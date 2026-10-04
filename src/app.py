@@ -35,13 +35,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom Styling (Professional audit workstation theme)
+# Custom Styling (Theme-aware, works seamlessly in both Dark Mode and Light Mode)
 st.markdown("""
 <style>
     .main-title {
         font-size: 2.2rem;
         font-weight: 700;
-        color: #1B365D;
         margin-bottom: 2px;
     }
     .status-badge-clean {
@@ -69,26 +68,12 @@ st.markdown("""
         display: inline-block;
     }
     .tickmark-box {
-        background: #F1F5F9;
-        border-left: 3px solid #1B365D;
+        background: rgba(128, 128, 128, 0.1);
+        border-left: 3px solid #3B82F6;
         padding: 8px 12px;
         margin: 4px 0px;
         font-size: 0.9rem;
-    }
-    .about-card {
-        background: linear-gradient(135deg, #F8FAFC 0%, #EEF2F6 100%);
-        border: 1px solid #CBD5E1;
-        border-radius: 8px;
-        padding: 16px 22px;
-        margin-bottom: 16px;
-    }
-    .input-card {
-        background-color: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 8px;
-        padding: 16px 20px;
-        margin-bottom: 18px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        border-radius: 0 4px 4px 0;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -118,7 +103,7 @@ engagement_mode = st.sidebar.radio(
 # -------------------------------------------------------------
 # TOP HEADER & ABOUT SECTION
 # -------------------------------------------------------------
-st.markdown("<div class='main-title'>CARO 2020 Statutory Audit Testing Engine</div>", unsafe_allow_html=True)
+st.markdown("<div class='main-title'>⚖️ CARO 2020 Statutory Audit Testing Engine</div>", unsafe_allow_html=True)
 
 with st.expander("ℹ️ About the Engine & How to Input Data", expanded=False):
     st.markdown("""
@@ -126,7 +111,7 @@ with st.expander("ℹ️ About the Engine & How to Input Data", expanded=False):
     
     #### 🚀 How to Use & Get Output:
     1. **Preloaded Real Cases:** Select *Tata Motors Limited* (real listed entity with clean/minor observations) or *Zenith Infra & Power Ltd* (stressed entity with defaults and qualifications).
-    2. **Audit Your Own Company:** Switch to **"✏️ Input Your Company Data & Run Custom Audit"** to:
+    2. **Audit Your Own Company:** Switch to **"✏️ Input Your Company Data & Run Custom Audit"** in the sidebar to:
        - **Type your company details and key financial figures** directly on screen (Turnover, Borrowings default, Statutory arrears, Revaluations >10%, Cash losses).
        - **Or upload client schedules** (`.csv` / `.zip`) using ICAI-compliant templates.
     3. **Instant Regulatory Output:** View all 21 clauses evaluated in the **Compliance Matrix**, inspect substantive audit trails, and download **Audit Workpapers (.xlsx)**, **Draft CARO Reports (.md)**, and **PDF Deliverables (.pdf)**!
@@ -164,19 +149,11 @@ else:
                 if not dest_file.exists():
                     shutil.copy(tf, dest_file)
 
-    st.markdown("""
-    <div class='about-card'>
-        <h4 style='margin-top:0; color:#1B365D;'>✏️ Input Company Financial Data & Run Substantive Audit</h4>
-        <p style='color:#475569; font-size:0.95rem; margin-bottom:0;'>
-            Enter your company details and financial test indicators below, or upload custom client schedules.
-            The engine evaluates all 21 clauses per ICAI Guidance Note rules and computes quantified exposure.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.info("✏️ **Custom Company Audit Mode:** Enter your company details and financial test indicators below, or upload schedules. All 21 clauses are evaluated in real-time.")
 
     tab_input_form, tab_input_upload = st.tabs([
-        "📝 Method 1: Direct Form Input (Zero Setup)",
-        "📂 Method 2: Upload Client Schedules (.csv / .zip)"
+        "📋 Form Input (Zero Setup)",
+        "📁 Upload Schedules (.csv / .zip)"
     ])
 
     # Method 1: Direct Form Input
