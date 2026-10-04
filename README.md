@@ -103,18 +103,21 @@ This repository includes two real-world corporate datasets for end-to-end substa
 
 ---
 
-## 🚀 Quickstart Guide
+## 🚀 Quickstart Guide: 1-Click Launch
 
-### 1. Installation
-Clone the repository and install in editable mode:
+### Option A: 1-Click Launch (Double Click)
+- **On Windows:** Simply double-click `run_dashboard.bat` in the repository root.
+- **On Linux/Mac:** Run `./run_dashboard.sh`.
+
+### Option B: Terminal Command
+Run directly from your terminal:
 ```bash
-git clone https://github.com/your-username/caro2020-audit-engine.git
-cd caro2020-audit-engine
-pip install -e .
+streamlit run app.py
 ```
+*The web dashboard opens automatically in your default browser at `http://localhost:8501`!*
 
-### 2. Run Audit via CLI
-Run the automated substantive testing engine on Tata Motors Limited:
+### Option C: Run Audit via CLI
+Run the automated substantive testing engine via CLI on Tata Motors Limited:
 ```bash
 caro-audit audit --client data/sample_clients/tata_motors_fy24
 ```
@@ -123,11 +126,25 @@ Or test the stressed scenario with adverse remarks:
 caro-audit audit --client data/sample_clients/zenith_infra_fy24
 ```
 
-### 3. Launch Interactive Streamlit Web Dashboard
-Launch the web interface for visual clause inspection and one-click deliverable downloads:
+### Option D: Run Test Suite
+Run the automated test suite with pytest:
 ```bash
-streamlit run src/app.py
+pytest tests/ -v
 ```
+
+---
+
+## 🌐 Deploy as a Live Web App (Streamlit Community Cloud)
+
+You can host this application online for free in **under 60 seconds** so anyone (recruiters, interviewers, audit partners) can open it on their browser or phone without downloading anything:
+
+1. Go to **[share.streamlit.io](https://share.streamlit.io/)** and sign in with your GitHub account (`SaanviPathak-git`).
+2. Click **"New app"**.
+3. Select your repository: `SaanviPathak-git/caro2020-audit-engine`.
+4. Set **Main file path** to: `app.py`.
+5. Click **"Deploy!"**.
+
+You will receive a live URL (e.g. `https://caro2020-audit-engine.streamlit.app`) that you can add to your resume, LinkedIn, or share directly in interviews!
 
 ### 4. Run Test Suite
 Run the automated test suite with pytest:
