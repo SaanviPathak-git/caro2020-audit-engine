@@ -4,14 +4,17 @@ Built with Streamlit for Audit Engagement Teams at Big 4 & Top CA Firms.
 """
 
 import sys
+import os
+import html
 from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-# Add parent path so imports work
-current_dir = Path(__file__).resolve().parent
-if str(current_dir) not in sys.path:
-    sys.path.insert(0, str(current_dir))
+# Configure Root and Source Paths
+SRC_DIR = Path(__file__).resolve().parent
+ROOT_DIR = SRC_DIR.parent
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 
 from caro_engine.core.engine import CaroAuditEngine
 from caro_engine.core.models import ClauseStatus
@@ -27,26 +30,14 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom Styling
+# Custom Styling (Safe, modern professional theme)
 st.markdown("""
 <style>
     .main-title {
         font-size: 2.2rem;
         font-weight: 700;
         color: #1B365D;
-        margin-bottom: 0px;
-    }
-    .sub-title {
-        font-size: 1.05rem;
-        color: #4B5563;
-        margin-bottom: 18px;
-    }
-    .metric-card {
-        background-color: #F8FAFC;
-        border: 1px solid #E2E8F0;
-        border-radius: 8px;
-        padding: 14px;
-        text-align: center;
+        margin-bottom: 4px;
     }
     .status-badge-clean {
         background-color: #DCFCE7;
@@ -54,6 +45,7 @@ st.markdown("""
         font-weight: 600;
         padding: 4px 10px;
         border-radius: 4px;
+        display: inline-block;
     }
     .status-badge-qualified {
         background-color: #FEE2E2;
@@ -61,6 +53,7 @@ st.markdown("""
         font-weight: 600;
         padding: 4px 10px;
         border-radius: 4px;
+        display: inline-block;
     }
     .status-badge-obs {
         background-color: #FEF9C3;
@@ -68,6 +61,7 @@ st.markdown("""
         font-weight: 600;
         padding: 4px 10px;
         border-radius: 4px;
+        display: inline-block;
     }
     .tickmark-box {
         background: #F1F5F9;
@@ -82,13 +76,12 @@ st.markdown("""
 # -------------------------------------------------------------
 # SIDEBAR CONTROLS
 # -------------------------------------------------------------
-st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Institute_of_Chartered_Accountants_of_India_logo.svg/300px-Institute_of_Chartered_Accountants_of_India_logo.svg.png", width=70)
-st.sidebar.markdown("### 🏛️ Audit Engagement Setup")
+st.sidebar.markdown("## 🏛️ Audit Engagement Setup")
 
-sample_dir = current_dir.parent / "data" / "sample_clients"
+SAMPLE_DIR = ROOT_DIR / "data" / "sample_clients"
 client_options = {
-    "Tata Motors Limited (FY 2023-24) - Real Listed Entity": sample_dir / "tata_motors_fy24",
-    "Zenith Infra & Power Ltd (FY 2023-24) - Stressed / Qualifications": sample_dir / "zenith_infra_fy24"
+    "Tata Motors Limited (FY 2023-24) - Real Listed Entity": SAMPLE_DIR / "tata_motors_fy24",
+    "Zenith Infra & Power Ltd (FY 2023-24) - Stressed / Qualifications": SAMPLE_DIR / "zenith_infra_fy24"
 }
 
 selected_client_label = st.sidebar.selectbox("Select Audit Client", list(client_options.keys()))
@@ -100,21 +93,16 @@ custom_om_pct = st.sidebar.slider("Overall Materiality (% of Turnover)", 0.25, 2
 custom_pm_pct = st.sidebar.slider("Performance Materiality (% of OM)", 50, 85, 75, 5)
 custom_ctt_pct = st.sidebar.slider("Clearly Trivial Threshold (% of OM)", 1, 10, 5, 1)
 
-# Initialize Engine
-@st.cache_data(show_spinner=False)
-def run_cached_audit(c_path_str: str, om_p: float, pm_p: float, ctt_p: float):
-    eng = CaroAuditEngine(Path(c_path_str))
-    data = eng.load_data()
-    # Apply user overrides if present
-    if data["metadata"].materiality:
-        data["metadata"].materiality.overall_materiality_pct = om_p
-        data["metadata"].materiality.performance_materiality_pct = pm_p
-        data["metadata"].materiality.clearly_trivial_pct = ctt_p
-        data["metadata"].materiality.calculate()
-    res_summary = eng.run_audit()
-    return eng, res_summary
+# Execute Audit Engine directly (Fast execution < 100ms, avoids caching serialization issues)
+engine = CaroAuditEngine(client_path)
+raw_data = engine.load_data()
+if raw_data["metadata"].materiality:
+    raw_data["metadata"].materiality.overall_materiality_pct = custom_om_pct
+    raw_data["metadata"].materiality.performance_materiality_pct = custom_pm_pct
+    raw_data["metadata"].materiality.clearly_trivial_pct = custom_ctt_pct
+    raw_data["metadata"].materiality.calculate()
 
-engine, summary = run_cached_audit(str(client_path), custom_om_pct, custom_pm_pct, custom_ctt_pct)
+summary = engine.run_audit()
 meta = summary.metadata
 mat = meta.materiality
 
@@ -122,7 +110,8 @@ mat = meta.materiality
 # HEADER & MATERIALITY BANNER
 # -------------------------------------------------------------
 st.markdown("<div class='main-title'>CARO 2020 Statutory Audit Testing Engine</div>", unsafe_allow_html=True)
-st.markdown(f"<div class='sub-title'>Automated Substantive Audit Testing across all 21 Clauses | Client: <b>{meta.company_name}</b> (CIN: {meta.cin}) | FY: <b>{meta.financial_year}</b></div>", unsafe_allow_html=True)
+safe_co_name = html.escape(meta.company_name)
+st.caption(f"Automated Substantive Audit Testing across all 21 Clauses | Client: **{safe_co_name}** (CIN: {meta.cin}) | FY: **{meta.financial_year}**")
 
 # Top Metrics Row
 col1, col2, col3, col4, col5 = st.columns(5)
@@ -177,7 +166,6 @@ with tab_matrix:
         
     df_matrix = pd.DataFrame(matrix_records)
     
-    # Styled dataframe
     def color_status(val):
         if val == "CLEAN":
             return "background-color: #DCFCE7; color: #166534; font-weight: bold;"
@@ -187,7 +175,11 @@ with tab_matrix:
             return "background-color: #FEF9C3; color: #854D0E; font-weight: bold;"
         return "background-color: #F3F4F6; color: #6B7280;"
 
-    st.dataframe(df_matrix.style.map(color_status, subset=["Status"]), use_container_width=True, height=520)
+    try:
+        styled_df = df_matrix.style.map(color_status, subset=["Status"])
+        st.dataframe(styled_df, use_container_width=True, height=520)
+    except Exception:
+        st.dataframe(df_matrix, use_container_width=True, height=520)
 
     # SA 320 Materiality Explainer Card
     with st.expander("📌 View SA 320 Materiality Calculation Details"):
@@ -274,57 +266,65 @@ with tab_deliverables:
     deliv_dir = client_path / "deliverables"
     deliv_dir.mkdir(parents=True, exist_ok=True)
     
-    excel_file = deliv_dir / f"{meta.company_name.replace(' ', '_')}_CARO_2020_Workpaper.xlsx"
-    md_file = deliv_dir / f"{meta.company_name.replace(' ', '_')}_Draft_CARO_Report.md"
-    pdf_file = deliv_dir / f"{meta.company_name.replace(' ', '_')}_CARO_2020_Report.pdf"
+    clean_name = meta.company_name.replace(' ', '_').replace('&', 'and')
+    excel_file = deliv_dir / f"{clean_name}_CARO_2020_Workpaper.xlsx"
+    md_file = deliv_dir / f"{clean_name}_Draft_CARO_Report.md"
+    pdf_file = deliv_dir / f"{clean_name}_CARO_2020_Report.pdf"
 
-    # Ensure generated
-    generate_excel_workpaper(excel_file, meta, summary.clause_results)
-    save_draft_caro_report(md_file, meta, summary.clause_results)
-    generate_caro_pdf_report(pdf_file, meta, summary.clause_results)
+    # Safely generate deliverables if not already present
+    try:
+        generate_excel_workpaper(excel_file, meta, summary.clause_results)
+        save_draft_caro_report(md_file, meta, summary.clause_results)
+        generate_caro_pdf_report(pdf_file, meta, summary.clause_results)
+    except Exception as e:
+        st.warning(f"Note on deliverable generation: {e}")
 
     col_d1, col_d2, col_d3 = st.columns(3)
     
     with col_d1:
         st.markdown("#### 📗 Excel Workpaper")
         st.write("Multi-tab audit workpaper complete with SA 320 materiality, tickmark legends, testing matrices, and audit sign-off blocks.")
-        with open(excel_file, "rb") as f:
-            st.download_button(
-                label="⬇️ Download Excel Workpaper (.xlsx)",
-                data=f.read(),
-                file_name=excel_file.name,
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                key="btn_excel"
-            )
+        if excel_file.exists():
+            with open(excel_file, "rb") as f:
+                st.download_button(
+                    label="⬇️ Download Excel Workpaper (.xlsx)",
+                    data=f.read(),
+                    file_name=excel_file.name,
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    key=f"btn_excel_{clean_name}"
+                )
 
     with col_d2:
         st.markdown("#### 📄 Draft CARO Report")
         st.write("Final legal annexure to Independent Auditor's Report drafted in official ICAI Guidance Note wording with all statutory tables.")
-        with open(md_file, "r", encoding="utf-8") as f:
-            st.download_button(
-                label="⬇️ Download Draft Report (.md)",
-                data=f.read(),
-                file_name=md_file.name,
-                mime="text/markdown",
-                key="btn_md"
-            )
+        if md_file.exists():
+            with open(md_file, "r", encoding="utf-8") as f:
+                st.download_button(
+                    label="⬇️ Download Draft Report (.md)",
+                    data=f.read(),
+                    file_name=md_file.name,
+                    mime="text/markdown",
+                    key=f"btn_md_{clean_name}"
+                )
 
     with col_d3:
         st.markdown("#### 📑 Official PDF Report")
         st.write("Printable PDF annexure suitable for submission to Audit Committee and Board of Directors.")
-        with open(pdf_file, "rb") as f:
-            st.download_button(
-                label="⬇️ Download PDF Report (.pdf)",
-                data=f.read(),
-                file_name=pdf_file.name,
-                mime="application/pdf",
-                key="btn_pdf"
-            )
+        if pdf_file.exists():
+            with open(pdf_file, "rb") as f:
+                st.download_button(
+                    label="⬇️ Download PDF Report (.pdf)",
+                    data=f.read(),
+                    file_name=pdf_file.name,
+                    mime="application/pdf",
+                    key=f"btn_pdf_{clean_name}"
+                )
 
     st.markdown("---")
     st.markdown("#### 👁️ Report Preview:")
-    with open(md_file, "r", encoding="utf-8") as f:
-        st.markdown(f.read())
+    if md_file.exists():
+        with open(md_file, "r", encoding="utf-8") as f:
+            st.code(f.read(), language="markdown")
 
 # -------------------------------------------------------------
 # TAB 4: INTERVIEW MASTERCLASS
@@ -333,7 +333,7 @@ with tab_interview:
     st.markdown("### 🎓 Big 4 Statutory Audit Interview Masterclass: CARO 2020")
     st.write(
         "Everything you need to master statutory audit, CARO 2020, NFRA regulatory inspections, "
-        "and technical technical interview rounds at PwC, Deloitte, EY, KPMG, BDO, and Grant Thornton."
+        "and technical interview rounds at PwC, Deloitte, EY, KPMG, BDO, and Grant Thornton."
     )
     
     qa_items = [
