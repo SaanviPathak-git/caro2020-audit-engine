@@ -1,0 +1,21 @@
+{
+  "company_name": "Tata Motors Limited",
+  "cin": "L28920MH1945PLC004520",
+  "financial_year": "2023-24",
+  "audit_period_start": "2023-04-01",
+  "audit_period_end": "2024-03-31",
+  "lead_partner": "CA Rajesh Mehta, FCA (Membership No. 048921)",
+  "firm_name": "B S R & Co. LLP, Chartered Accountants (Firm Reg No. 101248W/W-100022)",
+  "nature_of_business": "Automobile Manufacturing, Commercial & Passenger Vehicles, EV Mobility Solutions",
+  "is_listed": true,
+  "reporting_currency": "INR",
+  "unit_scale": "Crores",
+  "standalone_or_consolidated": "Standalone",
+  "materiality": {
+    "benchmark_name": "Turnover / Revenue from Operations",
+    "benchmark_amount": 73289.00,
+    "overall_materiality_pct": 0.5,
+    "performance_materiality_pct": 75.0,
+    "clearly_trivial_pct": 5.0
+  }
+}

@@ -1,0 +1,14 @@
+asset_id,asset_class,description,location,gross_carrying_val_cr,accumulated_depr_cr,net_carrying_val_cr,title_held_in_company_name,title_holder_name,title_holder_relationship,period_held_years,reason_for_not_held_in_name,revalued_during_year,revaluation_percent,revaluation_valuer_type
+FA-LND-001,Freehold Land,Pimpri Works Manufacturing Plot 14,Pune Maharashtra,420.50,0.00,420.50,No,Tata Engineering & Locomotive Co Ltd,Predecessor Entity,79,Mutation of title pending with State Revenue Authority following corporate name change,No,0.00,N/A
+FA-LND-002,Freehold Land,Sanand EV Manufacturing Plant Site,Sanand Gujarat,685.20,0.00,685.20,Yes,Tata Motors Limited,Self,14,N/A,No,0.00,N/A
+FA-LND-003,Freehold Land,Jamshedpur Heavy Commercial Vehicle Plant,Jamshedpur Jharkhand,510.00,0.00,510.00,Yes,Tata Motors Limited,Self,75,N/A,No,0.00,N/A
+FA-LND-004,Leasehold Land,Pantnagar Integrated Facility (90 yr lease),Pantnagar Uttarakhand,230.40,28.80,201.60,Yes,Tata Motors Limited,Self,18,N/A,No,0.00,N/A
+FA-BLD-001,Buildings,Factory Sheds & Assembly Line Structures,Pune Maharashtra,1850.00,740.00,1110.00,Yes,Tata Motors Limited,Self,25,N/A,No,0.00,N/A
+FA-BLD-002,Buildings,Engineering Research Centre (ERC) Complex,Pune Maharashtra,950.00,320.00,630.00,Yes,Tata Motors Limited,Self,15,N/A,No,0.00,N/A
+FA-BLD-003,Buildings,Administrative Headquarters - Bombay House (Share),Mumbai Maharashtra,380.00,110.00,270.00,Yes,Tata Motors Limited,Self,35,N/A,No,0.00,N/A
+FA-PLM-001,Plant & Equipment,Robotic Automated Weld Shop Sanand 2.0,Sanand Gujarat,3450.00,890.00,2560.00,Yes,Tata Motors Limited,Self,4,N/A,Yes,11.80,Registered Valuer (IBBI/RV/02/2019)
+FA-PLM-002,Plant & Equipment,Heavy Vehicle Engine Casting & Machining,Jamshedpur Jharkhand,2890.00,1450.00,1440.00,Yes,Tata Motors Limited,Self,12,N/A,No,0.00,N/A
+FA-PLM-003,Plant & Equipment,Paint Shop Line 3 with Cathodic Electrodeposition,Pune Maharashtra,2150.00,980.00,1170.00,Yes,Tata Motors Limited,Self,8,N/A,No,0.00,N/A
+FA-ROU-001,Right-of-Use Assets,Logistics Hubs & Regional Warehouses,Gurugram & Bengaluru,480.00,140.00,340.00,Yes,Tata Motors Limited,Self,5,N/A,No,0.00,N/A
+FA-INT-001,Intangible Assets,Vehicle Platform Architecture & Software Design,Pune Maharashtra,3200.00,1650.00,1550.00,Yes,Tata Motors Limited,Self,6,N/A,No,0.00,N/A
+FA-CWP-001,Capital Work-in-Progress,Next-Gen Gen-3 EV Platform Tooling & Dies,Sanand & Pune,1890.00,0.00,1890.00,Yes,Tata Motors Limited,Self,2,N/A,No,0.00,N/A

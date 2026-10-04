@@ -1,0 +1,5 @@
+nature_of_borrowing,name_of_lender,sanctioned_amount_cr,outstanding_balance_mar31_cr,default_principal_cr,default_interest_cr,days_delay,remarks
+Rupee Term Loan,Punjab National Bank,250.00,185.00,32.50,14.20,120,Defaulted in servicing monthly installments and interest since November 2023
+Equipment Loan,SREI Infrastructure Finance,75.00,42.00,12.00,4.80,95,Account classified as SMA-2 by lender
+Working Capital Facility,Bank of India,150.00,148.00,0.00,6.50,75,Interest overdue in Cash Credit account
+Non-Convertible Debentures (NCDs),Privately Placed NCD Holders,100.00,100.00,25.00,11.50,180,Failed to redeem Series-II Debentures due for redemption in October 2023

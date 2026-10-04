@@ -1,0 +1,11 @@
+plant_location,inventory_class,book_value_cr,physical_count_value_cr,variance_amount_cr,variance_pct,exceeds_10pct_statutory_threshold,properly_adjusted_in_books,frequency_of_count
+Pune Plant,Raw Materials & Components,1845.20,1841.10,-4.10,-0.22,No,Yes,Continuous perpetual inventory count
+Pune Plant,Work-in-Progress (WIP),620.40,619.50,-0.90,-0.15,No,Yes,Monthly cycle count
+Pune Plant,Finished Commercial Vehicles,1420.50,1420.50,0.00,0.00,No,Yes,Perpetual verification
+Jamshedpur Plant,Raw Materials & Castings,1210.80,1206.50,-4.30,-0.36,No,Yes,Continuous perpetual inventory count
+Jamshedpur Plant,Finished Heavy Commercial Vehicles,980.20,980.20,0.00,0.00,No,Yes,Perpetual verification
+Sanand Plant,Raw Materials & Sub-assemblies,840.60,838.90,-1.70,-0.20,No,Yes,Continuous perpetual inventory count
+Sanand Plant,Finished Passenger Vehicles,750.30,750.30,0.00,0.00,No,Yes,Perpetual verification
+Lucknow Plant,Raw Materials & Spares,410.20,408.80,-1.40,-0.34,No,Yes,Continuous perpetual inventory count
+Pantnagar Plant,Components & Small Commercial Vehicles,635.40,634.10,-1.30,-0.20,No,Yes,Continuous perpetual inventory count
+Regional Warehouses,Spares & Accessories,580.00,576.20,-3.80,-0.66,No,Yes,Annual physical count at year-end

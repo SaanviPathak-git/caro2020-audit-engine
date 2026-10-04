@@ -1,0 +1,76 @@
+{
+  "clause_iv_sec185_186": {
+    "loans_to_directors_sec185_compliant": false,
+    "loans_guarantees_investments_sec186_compliant": false,
+    "special_resolution_passed_if_exceeding_limits": false,
+    "register_maintained_in_form_mbp2": false,
+    "remarks": "The Company has granted an unsecured loan of Rs. 65.00 Crores to Singhania Real Estate Pvt Ltd, an entity in which the Managing Director is interested, in contravention of the provisions of Section 185 of the Companies Act, 2013."
+  },
+  "clause_v_public_deposits": {
+    "has_accepted_public_deposits": false,
+    "directives_issued_by_rbi_complied": true,
+    "provisions_of_sections_73_to_76_complied": true,
+    "clb_or_nclt_orders_outstanding": false,
+    "remarks": "The Company has not accepted any deposits from the public."
+  },
+  "clause_vi_cost_records": {
+    "cost_records_mandated_by_central_govt": true,
+    "specified_under_section_148_1": true,
+    "cost_accounts_and_records_maintained": false,
+    "substantive_audit_check": "The Central Government has prescribed maintenance of cost records under Section 148(1) of the Act for construction and infrastructure works. However, the Company has failed to maintain the prescribed cost accounts and records during the financial year under audit."
+  },
+  "clause_viii_undisclosed_income": {
+    "unrecorded_transactions_surrendered_as_income": true,
+    "search_or_survey_under_income_tax_act": true,
+    "previously_unrecorded_income_recorded_in_books": false,
+    "remarks": "During the year, search operations under Section 132 of the Income-tax Act, 1961 were conducted, wherein undisclosed transactions amounting to Rs. 12.50 Crores were surrendered as income, which have not been properly recorded in the books of account."
+  },
+  "clause_x_ipo_preferential_allotment": {
+    "moneys_raised_by_ipo_or_fpo": false,
+    "preferential_allotment_or_private_placement": true,
+    "section_42_and_62_complied": false,
+    "funds_used_for_intended_purposes": false,
+    "remarks": "The Company made a preferential allotment of convertible warrants amounting to Rs. 50.00 Crores, but failed to comply with the requirement of keeping application money in a separate bank account per Section 42(6) of the Act."
+  },
+  "clause_xi_fraud_reporting": {
+    "fraud_by_company_noticed_or_reported": false,
+    "fraud_on_company_noticed_or_reported": true,
+    "form_adt4_filed_with_central_govt": true,
+    "whistleblower_complaints_received": 3,
+    "whistleblower_complaints_considered_by_auditor": true,
+    "substantive_audit_check": "A fraud on the Company amounting to Rs. 8.40 Crores by an erstwhile senior vice president involving fictitious subcontractor billings was noticed during the year. The statutory auditor has filed a report in Form ADT-4 with the Central Government (Ministry of Corporate Affairs) as prescribed under Section 143(12) of the Act."
+  },
+  "clause_xii_nidhi_company": {
+    "is_nidhi_company": false,
+    "remarks": "The Company is not a Nidhi company as per the provisions of the Companies Act, 2013."
+  },
+  "clause_xiv_internal_audit": {
+    "internal_audit_system_in_place": false,
+    "commensurate_with_size_and_nature": false,
+    "internal_audit_reports_reviewed_by_statutory_auditor": false,
+    "substantive_audit_check": "In our opinion, the internal audit system is not commensurate with the size and nature of the Company's business. No internal audit reports were finalized or submitted to the Audit Committee during the financial year."
+  },
+  "clause_xv_non_cash_transactions": {
+    "non_cash_transactions_with_directors": true,
+    "provisions_of_section_192_complied": false,
+    "remarks": "The Company transferred a luxury guest house having carrying value of Rs. 4.50 Crores to a director without obtaining prior approval in general meeting under Section 192 of the Act."
+  },
+  "clause_xvi_rbi_nbfc_registration": {
+    "required_to_be_registered_under_45_ia": false,
+    "has_conducted_nbfc_activities": false,
+    "is_core_investment_company_cic": false,
+    "group_cic_count": 0,
+    "remarks": "The Company is not required to be registered under Section 45-IA of the Reserve Bank of India Act, 1934."
+  },
+  "clause_xviii_auditor_resignation": {
+    "resignation_of_statutory_auditor_during_year": true,
+    "form_adt3_inspected": true,
+    "issues_or_objections_raised": "Previous statutory auditor resigned citing lack of information on related party loans and non-cooperation by management.",
+    "remarks": "During the year, the predecessor statutory auditor resigned on 14 November 2023. We have taken into consideration the issues raised in Form ADT-3 and the communication received per SA 300."
+  },
+  "clause_xxi_cfs_qualifications": {
+    "is_consolidated_audit": false,
+    "subsidiary_caro_qualifications": [],
+    "remarks": "This standalone audit report does not include consolidated statements."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "current_year_fy24": {
+    "financial_year": "2023-24",
+    "profit_loss_before_tax_cr": -210.50,
+    "depreciation_and_amortization_cr": 68.00,
+    "impairment_loss_cr": 0.00,
+    "unrealized_fx_gain_loss_cr": 0.00,
+    "other_non_cash_items_cr": 0.00,
+    "recalculated_cash_profit_loss_cr": -142.50,
+    "has_cash_loss": true
+  },
+  "preceding_year_fy23": {
+    "financial_year": "2022-23",
+    "profit_loss_before_tax_cr": -145.20,
+    "depreciation_and_amortization_cr": 60.00,
+    "impairment_loss_cr": 0.00,
+    "unrealized_fx_gain_loss_cr": 0.00,
+    "other_non_cash_items_cr": 0.00,
+    "recalculated_cash_profit_loss_cr": -85.20,
+    "has_cash_loss": true
+  }
+}

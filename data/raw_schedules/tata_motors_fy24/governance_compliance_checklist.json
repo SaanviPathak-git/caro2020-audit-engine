@@ -1,0 +1,100 @@
+{
+  "clause_iv_sec185_186": {
+    "clause_id": "3(iv)",
+    "title": "Compliance with Section 185 and 186",
+    "loans_to_directors_sec185_compliant": true,
+    "investments_loans_guarantees_sec186_compliant": true,
+    "special_resolution_passed_if_exceeded": true,
+    "statutory_limit_inr_cr": 18450.00,
+    "aggregate_investments_loans_guarantees_inr_cr": 6820.00,
+    "within_limits": true,
+    "audit_finding": "The Company has complied with the provisions of Sections 185 and 186 of the Companies Act, 2013 in respect of loans, investments, guarantees and securities provided. Aggregate exposure of ₹6,820 Cr is well within the statutory limit of ₹18,450 Cr."
+  },
+  "clause_v_deposits": {
+    "clause_id": "3(v)",
+    "title": "Acceptance of Deposits from Public (Sections 73 to 76)",
+    "has_accepted_public_deposits": false,
+    "has_deemed_deposits": false,
+    "customer_advances_gt_365_days": false,
+    "nclt_clb_orders_outstanding": false,
+    "audit_finding": "The Company has not accepted any deposits or amounts which are deemed to be deposits within the meaning of Sections 73 to 76 of the Act and the rules made thereunder. Accordingly, reporting under Clause 3(v) is not applicable."
+  },
+  "clause_vi_cost_records": {
+    "clause_id": "3(vi)",
+    "title": "Maintenance of Cost Records (Section 148(1))",
+    "cost_records_mandated": true,
+    "cost_records_maintained": true,
+    "cost_auditor_appointed": true,
+    "cost_auditor_firm": "M/s Mani & Co., Cost Accountants",
+    "audit_finding": "The Central Government has specified maintenance of cost records under sub-section (1) of Section 148 of the Act in respect of manufacturing automotive chassis and vehicles. We have broadly reviewed such accounts and records and are of the opinion that prima facie, the prescribed accounts and records have been made and maintained. We have not, however, made a detailed examination of the records."
+  },
+  "clause_viii_unrecorded_income": {
+    "clause_id": "3(viii)",
+    "title": "Unrecorded Income Disclosed in Tax Assessments",
+    "search_or_survey_conducted": false,
+    "undisclosed_income_surrendered": false,
+    "surrendered_income_recorded_in_books": true,
+    "audit_finding": "No transactions were surrendered or disclosed as income during the year in tax assessments under the Income Tax Act, 1961, which had not been previously recorded in the books of account."
+  },
+  "clause_x_ipo_private_placement": {
+    "clause_id": "3(x)",
+    "title": "End-use of IPO / FPO & Private Placement Funds",
+    "ipo_fpo_raised_during_year": false,
+    "private_placement_or_preferential_allotment": true,
+    "allotment_details": "Issue of Compulsorily Convertible Preference Shares (CCPS) by subsidiary TPEML to TPG Rise Climate",
+    "section_42_and_62_compliant": true,
+    "valuation_report_by_registered_valuer": true,
+    "funds_utilized_for_intended_purpose": true,
+    "audit_finding": "The Company did not raise money by way of initial public offer or further public offer during the year. In respect of preferential allotment of convertible instruments in prior tranches, the requirements of Section 42 and 62 of the Act have been complied with and funds were applied for EV R&D and platform manufacturing."
+  },
+  "clause_xi_fraud_reporting": {
+    "clause_id": "3(xi)",
+    "title": "Fraud Reporting and Whistleblower Mechanism",
+    "fraud_by_or_on_company_noticed": false,
+    "form_adt4_filed_with_central_govt": false,
+    "whistleblower_complaints_received_count": 42,
+    "whistleblower_complaints_investigated_by_audit_committee": true,
+    "whistleblower_material_impact_on_financials": false,
+    "audit_finding": "No fraud by the Company or any material fraud on the Company has been noticed or reported during the year. No report under Section 143(12) in Form ADT-4 was required to be filed. The auditor has considered 42 whistle-blower complaints received by the Company during the year; all were investigated and none revealed material financial misstatements or financial irregularities."
+  },
+  "clause_xii_nidhi_company": {
+    "clause_id": "3(xii)",
+    "title": "Compliance by Nidhi Companies",
+    "is_nidhi_company": false,
+    "audit_finding": "The Company is not a Nidhi Company as defined under Section 406 of the Companies Act, 2013. Accordingly, reporting under Clause 3(xii)(a), (b), and (c) is not applicable."
+  },
+  "clause_xiv_internal_audit": {
+    "clause_id": "3(xiv)",
+    "title": "Internal Audit System (Section 138)",
+    "internal_audit_mandated": true,
+    "internal_audit_system_commensurate": true,
+    "internal_audit_reports_reviewed_by_statutory_auditor": true,
+    "internal_audit_firm": "In-house Corporate Audit Division assisted by Ernst & Young LLP",
+    "audit_finding": "In our opinion, the Company has an internal audit system commensurate with the size and nature of its business. We have considered the internal audit reports of the Company issued till date for the period under audit."
+  },
+  "clause_xv_non_cash_transactions": {
+    "clause_id": "3(xv)",
+    "title": "Non-Cash Transactions with Directors (Section 192)",
+    "non_cash_transactions_entered": false,
+    "section_192_compliant": true,
+    "audit_finding": "In our opinion and according to the information and explanations given to us, during the year the Company has not entered into any non-cash transactions with its directors or persons connected with them, and hence provisions of Section 192 of the Companies Act, 2013 are not applicable."
+  },
+  "clause_xvi_rbi_nbfc_registration": {
+    "clause_id": "3(xvi)",
+    "title": "Registration under Section 45-IA of RBI Act, 1934",
+    "registration_required_under_45ia": false,
+    "principal_business_test_50_50_met": false,
+    "financial_assets_pct_total_assets": 14.2,
+    "financial_income_pct_gross_income": 3.8,
+    "is_core_investment_company_cic": false,
+    "group_cic_count": 0,
+    "audit_finding": "The Company is an automotive manufacturing company and is not required to be registered under Section 45-IA of the Reserve Bank of India Act, 1934. Financial assets comprise 14.2% of total assets and income from financial assets is 3.8% of gross income, well below the 50-50 threshold."
+  },
+  "clause_xviii_auditor_resignation": {
+    "clause_id": "3(xviii)",
+    "title": "Resignation of Statutory Auditors",
+    "resignation_occurred_during_year": false,
+    "form_adt3_filed": false,
+    "audit_finding": "There has been no resignation of the statutory auditors during the year. Accordingly, reporting under Clause 3(xviii) is not applicable."
+  }
+}

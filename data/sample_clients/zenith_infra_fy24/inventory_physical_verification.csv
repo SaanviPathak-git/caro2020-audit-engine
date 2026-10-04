@@ -1,0 +1,5 @@
+plant_location,inventory_class,book_value_cr,physical_count_value_cr,variance_amount_cr,variance_pct,exceeds_10pct_statutory_threshold,properly_adjusted_in_books,frequency_of_count
+Nagpur Fabrication Yard,Structural Steel & Plates,185.00,158.80,-26.20,-14.16,Yes,No,Annual physical count at year-end
+Nagpur Yard,Pipes & Fittings,64.20,63.50,-0.70,-1.09,No,Yes,Annual physical count
+Durgapur Site,Cement & Aggregates,42.50,42.00,-0.50,-1.18,No,Yes,Quarterly count
+Durgapur Site,Stores & Spare Parts,38.10,31.20,-6.90,-18.11,Yes,No,Annual count

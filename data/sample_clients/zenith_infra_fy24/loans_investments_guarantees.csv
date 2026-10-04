@@ -1,0 +1,4 @@
+party_name,relationship,type,amount_granted_during_year_cr,balance_outstanding_cr,terms_prejudicial,schedule_stipulated,repayment_regular,overdue_gt_90_days_cr,reasonable_steps_taken,renewed_or_extended_cr,repayable_on_demand_or_no_terms
+Singhania Real Estate Pvt Ltd,Promoter Group Entity,Loan,65.00,85.00,Yes,No,No,85.00,No,0.00,Yes
+Zenith Power Transmission Ltd,Subsidiary,Loan,40.00,40.00,No,Yes,No,12.50,No,0.00,No
+Subcontractor Mobilization Advance,Other,Advance in nature of loan,25.00,18.00,No,Yes,Yes,0.00,N/A,0.00,No

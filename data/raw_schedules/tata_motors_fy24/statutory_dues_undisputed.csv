@@ -1,0 +1,8 @@
+statute_name,nature_of_dues,amount_inr_cr,due_date,actual_payment_date,outstanding_as_on_31mar2024,overdue_gt_6_months,reason_for_delay
+Central Goods & Services Tax Act 2017,CGST & SGST Monthly Return (GSTR-3B),345.80,2024-03-20,2024-03-20,0.00,No,Regular monthly deposit within due date
+Employees' Provident Funds Act 1952,Provident Fund & Pension Contribution,48.20,2024-03-15,2024-03-14,0.00,No,Regular monthly deposit within due date
+Employees' State Insurance Act 1948,ESI Contribution,8.15,2024-03-15,2024-03-15,0.00,No,Regular monthly deposit within due date
+Income Tax Act 1961,Tax Deducted at Source (TDS on Contracts & Salaries),112.40,2024-03-07,2024-03-07,0.00,No,Regular monthly deposit within due date
+Customs Act 1962,Import Duty on Auto Sub-assemblies,64.20,2024-03-25,2024-03-25,0.00,No,Paid on assessment via ICEGATE portal
+Maharashtra Municipal Corporation Act,Municipal Property Tax Arrears (Pune Pimpri Unit),4.85,2023-08-31,Unpaid,4.85,Yes,Assessment dispute resolved with local municipality but challan generation delayed; outstanding > 6 months
+Gram Panchayat Act,Local Rural Development Cess (Sanand Ancillary),1.20,2023-09-15,Unpaid,1.20,Yes,Administrative reconciliation pending with district collectorate; outstanding > 6 months

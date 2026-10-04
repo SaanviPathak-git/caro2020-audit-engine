@@ -1,0 +1,11 @@
+asset_class,gross_block_beg,additions,disposals,revaluation_amount,gross_block_end,accum_depr,net_carrying_amount,physical_verified,revalued_by_registered_valuer,revaluation_pct_change
+Freehold Land,1245.50,15.20,0.00,0.00,1260.70,0.00,1260.70,Yes,No,0.00
+Leasehold Land,842.10,0.00,0.00,0.00,842.10,95.40,746.70,Yes,No,0.00
+Buildings,4520.30,185.60,12.40,0.00,4693.50,1820.50,2873.00,Yes,No,0.00
+Plant & Machinery,26450.80,1840.50,210.30,0.00,28081.00,16540.20,11540.80,Yes,No,0.00
+"Dies, Jigs & Fixtures",4210.00,430.20,45.00,0.00,4595.20,2980.10,1615.10,Yes,No,0.00
+Computers & IT Hardware,620.40,95.30,22.10,0.00,693.60,490.20,203.40,Yes,No,0.00
+Vehicles,145.20,24.10,8.50,0.00,160.80,88.40,72.40,Yes,No,0.00
+Furniture & Fixtures,215.30,18.40,3.20,0.00,230.50,145.60,84.90,Yes,No,0.00
+Capital Work-in-Progress (CWIP),1850.40,1240.20,1520.10,0.00,1570.50,0.00,1570.50,Yes,No,0.00
+Intangible Assets - Software & Patents,3420.10,480.00,0.00,0.00,3900.10,2150.30,1749.80,Yes,No,0.00

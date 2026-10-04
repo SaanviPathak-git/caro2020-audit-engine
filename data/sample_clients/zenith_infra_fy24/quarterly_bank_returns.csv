@@ -1,0 +1,9 @@
+quarter,bank_name,sanctioned_limit_cr,security_particulars,current_asset_type,amount_per_books_cr,amount_reported_to_bank_cr,difference_cr,variance_pct,reason_for_difference
+Q1 (June 2023),PNB Consortium,450.00,Hypothecation of stocks and receivables,Inventory,320.00,385.00,-65.00,-20.31,Client inflated stock statement filed with consortium to maintain drawing power
+Q1 (June 2023),PNB Consortium,450.00,Hypothecation of stocks and receivables,Trade Receivables,620.00,740.00,-120.00,-19.35,Invoiced uncertified EPC claims included in bank return not recognized in books
+Q2 (September 2023),PNB Consortium,450.00,Hypothecation of stocks and receivables,Inventory,315.00,370.00,-55.00,-17.46,Drawing power inflation of inventory quantities
+Q2 (September 2023),PNB Consortium,450.00,Hypothecation of stocks and receivables,Trade Receivables,640.00,755.00,-115.00,-17.97,Disputed receivables reported as good to bank
+Q3 (December 2023),PNB Consortium,450.00,Hypothecation of stocks and receivables,Inventory,295.00,345.00,-50.00,-16.95,Unreconciled physical shortage not factored in bank statement
+Q3 (December 2023),PNB Consortium,450.00,Hypothecation of stocks and receivables,Trade Receivables,610.00,715.00,-105.00,-17.21,Bad debts written off in books but retained in bank return
+Q4 (March 2024),PNB Consortium,450.00,Hypothecation of stocks and receivables,Inventory,285.00,340.00,-55.00,-19.30,Year-end write-downs in books not updated in quarterly bank filing
+Q4 (March 2024),PNB Consortium,450.00,Hypothecation of stocks and receivables,Trade Receivables,590.00,695.00,-105.00,-17.80,Major client disputes excluded from books but included in bank submission

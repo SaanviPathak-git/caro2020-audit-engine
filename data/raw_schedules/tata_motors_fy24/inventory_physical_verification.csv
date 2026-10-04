@@ -1,0 +1,8 @@
+inventory_class,book_qty_units,physical_count_units,unit_of_measure,book_value_cr,physical_value_cr,variance_amount_cr,variance_pct,discrepancy_exceeds_10pct,properly_adjusted_in_books,adjustment_remarks,audit_testing_status
+"Raw Materials & Steel Coils",145000,143200,"Metric Tonnes",1850.40,1827.42,-22.98,-1.24,No,Yes,"Adjusted in Consumption Account; scrap variance within normal operational tolerance","Tested & Verified"
+"Vehicle Assembly Components",8200000,8150000,"Parts",2140.20,2127.15,-13.05,-0.61,No,Yes,"Provision for slow-moving parts updated as per internal valuation policy","Tested & Verified"
+"Work-in-Progress (Chassis & Engines)",18500,18350,"Units",980.50,972.55,-7.95,-0.81,No,Yes,"Reconciled across robotic tracking lines; shop floor adjustments made in SAP ERP","Tested & Verified"
+"Finished Commercial Vehicles",8400,8385,"Units",2840.60,2835.52,-5.08,-0.18,No,Yes,"Transit delay of 15 vehicles confirmed at regional stockyards with gate-pass evidence","Tested & Verified"
+"Finished Passenger Cars (ICE & EV)",14200,14180,"Units",1980.00,1977.21,-2.79,-0.14,No,Yes,"Physical dispatch reconciled with dealer portal billing cut-off","Tested & Verified"
+"Spare Parts & Consumables",4500000,3920000,"Items",640.00,557.44,-82.56,-12.90,Yes,Yes,"Discrepancy of 12.90% (exceeds 10% statutory threshold) identified in obsolete tooling consumables; full write-down of ₹82.56 Cr charged to P&L","Exception Flagged - Statutory Disclosure Mandated"
+"Goods-in-Transit",1250,1250,"Consignments",420.00,420.00,0.00,0.00,No,Yes,"Traced to Bill of Lading, shipping documents and post-year-end GRNs","Tested & Verified"

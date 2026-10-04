@@ -1,0 +1,3 @@
+financial_year,is_current_year,pat_profit_loss_after_tax_cr,depreciation_amortization_cr,impairment_loss_non_cash_cr,unrealized_forex_loss_non_cash_cr,deferred_tax_adjustment_cr,calculated_cash_profit_loss_cr,incurred_cash_loss,audit_conclusion
+2023-24,Yes,7928.40,2451.80,0.00,-45.20,-185.00,10150.00,No,No cash loss incurred in FY 2023-24 (Cash Profit of ₹10,150.00 Cr)
+2022-23,No,2728.10,2385.40,42.50,110.00,-260.00,5006.00,No,No cash loss incurred in FY 2022-23 (Cash Profit of ₹5,006.00 Cr)

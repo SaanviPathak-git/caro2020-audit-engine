@@ -1,0 +1,4 @@
+lender_name,loan_facility,sanctioned_amount_cr,stated_purpose,drawn_amount_cr,utilized_for_purpose_cr,unutilized_diverted_amount_cr,audit_verification_procedure
+State Bank of India,Rupee Term Loan,4000.00,Capital expenditure for Electric Vehicle plant expansion at Sanand,3500.00,3500.00,0.00,Vouched to CapEx invoices LC disbursements and asset capitalization ledgers
+Bank of Baroda,Term Loan,1500.00,Modernization and tooling for Heavy Commercial Vehicle BS-VI Phase 2,1200.00,1200.00,0.00,Vouched to vendor supplier payments and machinery delivery inspection reports
+International Finance Corporation,Green ECB Loan,2000.00,Decarbonization and zero-emission bus fleet engineering,1800.00,1800.00,0.00,Vouched to project milestones escrow release certs and external engineer certs

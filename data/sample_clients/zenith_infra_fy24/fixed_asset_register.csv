@@ -1,0 +1,6 @@
+asset_class,gross_block_beg,additions,disposals,revaluation_amount,gross_block_end,accum_depr,net_carrying_amount,physical_verified,revalued_by_registered_valuer,revaluation_pct_change
+Freehold Land,420.00,0.00,0.00,78.00,498.00,0.00,498.00,Yes,Yes,18.57
+Plant & Machinery,1850.00,45.00,80.00,240.00,2055.00,890.00,1165.00,No,No,14.80
+Office Buildings,210.00,10.00,0.00,0.00,220.00,65.00,155.00,Yes,No,0.00
+Heavy Cranes & Excavators,680.00,20.00,45.00,0.00,655.00,340.00,315.00,Yes,No,0.00
+Capital Work-in-Progress,340.00,85.00,0.00,0.00,425.00,0.00,425.00,Yes,No,0.00

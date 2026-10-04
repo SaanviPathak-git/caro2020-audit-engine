@@ -1,0 +1,26 @@
+{
+  "company_name": "Tata Motors Limited",
+  "cin": "L28920MH1945PLC004520",
+  "financial_year": "2023-24",
+  "balance_sheet_date": "2024-03-31",
+  "audit_firm": "M/s S R B C & CO LLP, Chartered Accountants",
+  "firm_registration_no": "324982E/E300003",
+  "engagement_partner": "CA Vikram Sharma",
+  "membership_no": "108742",
+  "company_type": "Listed Public Company (Automobile Manufacturing)",
+  "registered_office": "Bombay House, 24 Homi Mody Street, Fort, Mumbai - 400001, Maharashtra",
+  "materiality": {
+    "overall_materiality_inr_cr": 350.00,
+    "performance_materiality_inr_cr": 262.50,
+    "de_minimis_threshold_inr_cr": 17.50
+  },
+  "working_capital_sanction_limit_inr_cr": 14500.00,
+  "consortium_lead_bank": "State Bank of India",
+  "applicable_standards": [
+    "Companies (Auditor's Report) Order, 2020",
+    "Section 143(11) of the Companies Act, 2013",
+    "ICAI Guidance Note on CARO 2020 (Revised 2022 Edition)",
+    "Standards on Auditing (SA 500, SA 570, SA 240, SA 550, SA 250)",
+    "Indian Accounting Standards (Ind AS)"
+  ]
+}

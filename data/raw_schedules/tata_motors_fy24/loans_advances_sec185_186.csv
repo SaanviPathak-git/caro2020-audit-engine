@@ -1,0 +1,8 @@
+party_name,party_category,transaction_nature,amount_granted_during_yr_cr,balance_as_at_bs_date_cr,interest_rate_pct,gsec_benchmark_rate_pct,terms_prejudicial,repayment_schedule_stipulated,is_regular_receipt,is_overdue_gt_90_days,overdue_amount_cr,recovery_steps_taken,is_renewed_or_extended,is_repayable_on_demand
+Tata Passenger Electric Mobility Ltd,Subsidiary,Inter-Corporate Loan,1200.00,2450.00,8.25,7.15,No,Yes,Yes,No,0.00,N/A,No,No
+TML Smart City Mobility Solutions Ltd,Subsidiary,Working Capital Advance,350.00,420.00,8.00,7.15,No,Yes,Yes,No,0.00,N/A,No,No
+Jaguar Land Rover Automotive PLC,Subsidiary,Corporate Guarantee,0.00,1850.00,N/A (Guarantee Fee 1.25%),N/A,No,Yes,Yes,No,0.00,N/A,No,No
+Tata Cummins Pvt Ltd,Joint Venture,Short-Term Inter-Corporate Loan,150.00,150.00,7.80,7.15,No,Yes,Yes,No,0.00,N/A,No,No
+Automobile Corporation of Goa Ltd,Associate,Inter-Corporate Deposit,50.00,50.00,7.90,7.15,No,Yes,Yes,No,0.00,N/A,No,No
+DriveNXT EV Fleet Solutions Pvt Ltd,Other Party,Supplier Financing Advance,75.00,45.00,9.50,7.15,No,Yes,No,Yes,18.50,Legal demand notice issued under Section 138 of NI Act; commercial arbitration initiated,No,No
+AutoAncillary Partners Welfare Trust,Other Party,Demand Loan without Terms,25.00,25.00,0.00,7.15,Yes,No,No,No,0.00,No formal recovery initiated (Interest-free loan without stipulated terms),No,Yes

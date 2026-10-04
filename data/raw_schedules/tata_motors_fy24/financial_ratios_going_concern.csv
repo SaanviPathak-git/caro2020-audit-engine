@@ -1,0 +1,12 @@
+ratio_name,current_fy_2023_24,preceding_fy_2022_23,variance_pct,statutory_benchmark_norm,risk_indicator
+"Current Ratio (times)",1.05,0.92,14.13,">= 1.00","Low Risk (Current assets exceed current liabilities)"
+"Quick / Acid-Test Ratio (times)",0.72,0.64,12.50,">= 0.70","Low Risk (Adequate near-cash assets)"
+"Debt-Equity Ratio (times)",0.58,0.85,-31.76,"<= 2.00","Low Risk (Substantial deleveraging achieved)"
+"Debt Service Coverage Ratio (DSCR)",2.45,1.52,61.18,">= 1.25","Low Risk (Robust operating cash flow covers debt service)"
+"Return on Equity (ROE) (%)",18.40,7.95,131.45,"Positive","Strong Performance (Substantial improvement)"
+"Operating Profit Margin (%)",8.65,5.10,69.61,"Positive","Robust operational expansion"
+"Net Profit Margin (%)",10.82,4.18,158.85,"Positive","Strong positive bottom line"
+"Financial Assets Realisable within 1 Year (₹ Cr)",14542.80,11850.00,22.72,"> Liabilities","Positive Liquidity Headroom of ₹742.80 Cr"
+"Financial Liabilities Due within 1 Year (₹ Cr)",13800.00,12890.00,7.06,"Fully Funded","Comfortable maturity profile"
+"Undrawn Committed Credit Lines from Consortium (₹ Cr)",4500.00,3800.00,18.42,"Liquidity Backstop","Provides additional ₹4500 Cr liquidity buffer"
+"Going Concern Material Uncertainty Identified","No","No",0.00,"SA 570 Standard","Clean Opinion: Capable of meeting liabilities within 1 year"

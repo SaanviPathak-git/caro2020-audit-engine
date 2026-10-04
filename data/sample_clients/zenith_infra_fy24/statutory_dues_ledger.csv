@@ -1,0 +1,6 @@
+statute_name,nature_of_dues,amount_cr,period_to_which_relates,due_date,payment_date,status,days_overdue_as_of_mar31,exceeds_6_months
+Central Goods and Services Tax Act 2017,CGST & SGST Output Tax,12.45,FY 2023-24 (May to August 2023),2023-06-20,Unpaid,Arrears unpaid,285,Yes
+Employees Provident Funds Act 1952,Provident Fund Employee & Employer Share,4.20,FY 2023-24 (June to September 2023),2023-07-15,Unpaid,Arrears unpaid,260,Yes
+Income Tax Act 1961,Tax Deducted at Source (TDS),3.15,FY 2023-24 (Q1 and Q2),2023-07-07,Unpaid,Arrears unpaid,268,Yes
+Maharashtra State Tax on Professions Act,Professional Tax,0.35,FY 2023-24 (H1),2023-09-30,Unpaid,Arrears unpaid,183,Yes
+Employees State Insurance Act 1948,ESIC Contribution,0.85,FY 2023-24 (Q2),2023-10-15,Unpaid,Arrears unpaid,168,No

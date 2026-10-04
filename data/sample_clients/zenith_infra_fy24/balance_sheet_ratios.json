@@ -1,0 +1,134 @@
+{
+  "financial_ratios": {
+    "current_ratio": {
+      "numerator_name": "Current Assets",
+      "numerator_value_cr": 920.00,
+      "denominator_name": "Current Liabilities",
+      "denominator_value_cr": 1485.00,
+      "ratio_current_year": 0.62,
+      "ratio_prior_year": 0.81,
+      "variance_pct": -23.45,
+      "threshold_benchmark": 1.00,
+      "is_healthy": false
+    },
+    "debt_equity_ratio": {
+      "numerator_name": "Total Debt",
+      "numerator_value_cr": 725.00,
+      "denominator_name": "Total Equity (Net Worth)",
+      "denominator_value_cr": 185.00,
+      "ratio_current_year": 3.92,
+      "ratio_prior_year": 2.15,
+      "variance_pct": 82.32,
+      "threshold_benchmark": 2.00,
+      "is_healthy": false
+    },
+    "debt_service_coverage_ratio": {
+      "numerator_name": "EBITDA - Tax",
+      "numerator_value_cr": -35.00,
+      "denominator_name": "Debt Service (Interest + Principal)",
+      "denominator_value_cr": 85.00,
+      "ratio_current_year": -0.41,
+      "ratio_prior_year": 0.65,
+      "variance_pct": -163.07,
+      "threshold_benchmark": 1.25,
+      "is_healthy": false
+    },
+    "return_on_equity_pct": {
+      "numerator_name": "Net Profit after Tax",
+      "numerator_value_cr": -210.50,
+      "denominator_name": "Average Shareholder Equity",
+      "denominator_value_cr": 290.00,
+      "ratio_current_year": -72.58,
+      "ratio_prior_year": -36.75,
+      "variance_pct": -97.49,
+      "threshold_benchmark": 10.00,
+      "is_healthy": false
+    },
+    "inventory_turnover_ratio": {
+      "numerator_name": "Cost of Goods Sold",
+      "numerator_value_cr": 3200.00,
+      "denominator_name": "Average Inventory",
+      "denominator_value_cr": 310.00,
+      "ratio_current_year": 10.32,
+      "ratio_prior_year": 11.50,
+      "variance_pct": -10.26,
+      "threshold_benchmark": 4.00,
+      "is_healthy": true
+    },
+    "trade_receivables_turnover_ratio": {
+      "numerator_name": "Revenue from Operations",
+      "numerator_value_cr": 4250.00,
+      "denominator_name": "Average Trade Receivables",
+      "denominator_value_cr": 615.00,
+      "ratio_current_year": 6.91,
+      "ratio_prior_year": 7.80,
+      "variance_pct": -11.41,
+      "threshold_benchmark": 6.00,
+      "is_healthy": true
+    },
+    "trade_payables_turnover_ratio": {
+      "numerator_name": "Total Purchases",
+      "numerator_value_cr": 2890.00,
+      "denominator_name": "Average Trade Payables",
+      "denominator_value_cr": 920.00,
+      "ratio_current_year": 3.14,
+      "ratio_prior_year": 3.85,
+      "variance_pct": -18.44,
+      "threshold_benchmark": 2.00,
+      "is_healthy": true
+    },
+    "net_capital_turnover_ratio": {
+      "numerator_name": "Revenue from Operations",
+      "numerator_value_cr": 4250.00,
+      "denominator_name": "Working Capital",
+      "denominator_value_cr": -565.00,
+      "ratio_current_year": -7.52,
+      "ratio_prior_year": -14.20,
+      "variance_pct": 47.04,
+      "threshold_benchmark": 5.00,
+      "is_healthy": false
+    },
+    "net_profit_margin_pct": {
+      "numerator_name": "Net Profit after Tax",
+      "numerator_value_cr": -210.50,
+      "denominator_name": "Revenue from Operations",
+      "denominator_value_cr": 4250.00,
+      "ratio_current_year": -4.95,
+      "ratio_prior_year": -3.10,
+      "variance_pct": -59.67,
+      "threshold_benchmark": 2.00,
+      "is_healthy": false
+    },
+    "return_on_capital_employed_pct": {
+      "numerator_name": "EBIT",
+      "numerator_value_cr": -85.00,
+      "denominator_name": "Capital Employed",
+      "denominator_value_cr": 910.00,
+      "ratio_current_year": -9.34,
+      "ratio_prior_year": 2.10,
+      "variance_pct": -544.76,
+      "threshold_benchmark": 8.00,
+      "is_healthy": false
+    }
+  },
+  "one_year_liquidity_gap_analysis": {
+    "financial_assets_realizable_within_1_year_cr": {
+      "cash_and_cash_equivalents": 24.50,
+      "bank_balances_other": 12.00,
+      "current_investments_treasury": 0.00,
+      "trade_receivables": 590.00,
+      "other_current_financial_assets": 45.00,
+      "total_realizable_financial_assets_cr": 671.50
+    },
+    "financial_liabilities_maturing_within_1_year_cr": {
+      "current_borrowings_and_maturities": 415.00,
+      "trade_payables": 845.00,
+      "other_current_financial_liabilities": 225.00,
+      "total_maturing_financial_liabilities_cr": 1485.00
+    },
+    "net_liquidity_surplus_deficit_cr": -813.50,
+    "undrawn_sanctioned_credit_lines_cr": 0.00,
+    "total_effective_liquidity_cushion_cr": -813.50,
+    "going_concern_material_uncertainty_identified": true
+  }
+}

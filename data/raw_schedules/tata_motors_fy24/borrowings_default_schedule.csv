@@ -1,0 +1,6 @@
+lender_name,facility_type,sanctioned_amount_cr,outstanding_amount_cr,interest_rate_pct,repayment_frequency,any_default_during_year,default_principal_cr,default_interest_cr,days_overdue,declared_willful_defaulter,term_loan_purpose,actual_utilization_matched,short_term_funds_used_for_long_term,pledge_of_subsidiary_shares
+State Bank of India,External Commercial Borrowing / Term Loan,3500.00,2800.00,7.85,Quarterly,No,0.00,0.00,0,No,Sanand EV Tooling & Assembly Expansion,Yes,No,No
+HDFC Bank Limited,Long-term Capex Facility,2000.00,1650.00,7.90,Half-Yearly,No,0.00,0.00,0,No,Engineering & Safety R&D Centre Pune,Yes,No,No
+Bank of Baroda,Working Capital Consortium Term Loan,1500.00,1200.00,8.10,Monthly,No,0.00,0.00,0,No,Commercial Vehicle Chassis Upgradation,Yes,No,No
+Listed NCD Holders (BSE/NSE),Non-Convertible Debentures (Series 2021),1000.00,1000.00,6.95,Annual,No,0.00,0.00,0,No,Refinancing of High-Cost Domestic Debt,Yes,No,No
+Exim Bank of India,Foreign Currency Buyer Credit,850.00,620.00,SOFR + 1.25%,Semi-Annual,No,0.00,0.00,0,No,Import of Specialized Machinery from Germany,Yes,No,No

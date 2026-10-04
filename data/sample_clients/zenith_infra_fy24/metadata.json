@@ -1,0 +1,21 @@
+{
+  "company_name": "Zenith Infrastructure & Power Limited",
+  "cin": "L45200MH2008PLC184291",
+  "financial_year": "2023-24",
+  "audit_period_start": "2023-04-01",
+  "audit_period_end": "2024-03-31",
+  "lead_partner": "CA Vikram Singhania, FCA (Membership No. 052194)",
+  "firm_name": "Singhania & Associates LLP, Chartered Accountants (Firm Reg No. 128490W)",
+  "nature_of_business": "Heavy EPC Infrastructure, Highways & Thermal Power Engineering",
+  "is_listed": true,
+  "reporting_currency": "INR",
+  "unit_scale": "Crores",
+  "standalone_or_consolidated": "Standalone",
+  "materiality": {
+    "benchmark_name": "Turnover / Revenue from Operations",
+    "benchmark_amount": 4250.00,
+    "overall_materiality_pct": 0.5,
+    "performance_materiality_pct": 75.0,
+    "clearly_trivial_pct": 5.0
+  }
+}
