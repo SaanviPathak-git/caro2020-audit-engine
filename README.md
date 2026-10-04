@@ -1,12 +1,35 @@
-# CARO 2020 Substantive Audit Testing Engine
+# ⚖️ CARO 2020 Substantive Audit Testing Engine
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://caro2020-audit-engine.streamlit.app)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![ICAI SA 230 Compliant](https://img.shields.io/badge/ICAI-SA%20230%20%7C%20SA%20500-green.svg)](https://www.icai.org/)
 [![NFRA Inspection Ready](https://img.shields.io/badge/NFRA-Inspection%20Ready-success.svg)](https://nfra.gov.in/)
 
-> **An automated substantive audit testing engine for statutory auditors under CARO 2020 (Companies Auditor's Report Order) and Section 143(11) of the Companies Act, 2013.**  
-> Built for Big 4 audit engagement teams (PwC, Deloitte, EY, KPMG), top chartered accountancy firms, and financial analysts in India.
+> ### 🚀 Live Web Application: [caro2020-audit-engine.streamlit.app](https://caro2020-audit-engine.streamlit.app)
+> **Try it live in your browser without installing anything!** Test pre-loaded Big 4 listed audits (*Tata Motors Limited*, *Zenith Infra & Power Ltd*) or **input your own company data directly on screen / upload schedules** to get instant compliance matrices and downloadable Excel/PDF deliverables!
+
+---
+
+## 📖 About the Project & Live Interactive Audit
+
+**CARO 2020 Statutory Audit Testing Engine** is a comprehensive regulatory compliance platform built for audit engagement teams at Big 4 and top CA firms in India under **Companies (Auditor's Report) Order, 2020** and Section 143(11) of the Companies Act, 2013.
+
+### 🎯 How Users Can Input Their Data and Get Output:
+Anyone can open the live application at **[caro2020-audit-engine.streamlit.app](https://caro2020-audit-engine.streamlit.app)** and run audits on their company in two easy ways:
+
+1. **Direct Form Input (Zero Setup):**
+   - Enter your **Company Name**, **CIN**, **Financial Year**, and **Turnover Benchmark (₹ Cr)**.
+   - Adjust key financial test values directly on screen (e.g. Fixed Asset Revaluations > 10%, Bank statement variances, Undisputed statutory arrears > 6 months, Loan repayment defaults, Cash losses, Fraud reports).
+   - Click **"Run Audit"** to execute all 21 clauses instantly.
+2. **Upload Custom Client Schedules:**
+   - Download the blank ICAI-compliant CSV & JSON template package (`.zip`) with one click.
+   - Upload modified schedules (`fixed_asset_register.csv`, `quarterly_bank_returns.csv`, `statutory_dues_ledger.csv`, `borrowings_default_schedule.csv`, etc.) or a single ZIP archive.
+   - Any omitted schedule automatically inherits compliant standard records, guaranteeing error-free execution.
+3. **Instant Regulatory Output:**
+   - 📊 **Executive Compliance Matrix:** Live 21-clause table with ICAI statuses (`CLEAN`, `OBSERVATION`, `QUALIFIED`), exceptions, and evidentiary tickmarks.
+   - 🔍 **Substantive Audit Inspector:** Deep-dive into procedures executed (SA 500 / SA 230), evidentiary tickmark legends, quantified exposures, and statutory disclosure tables.
+   - 📥 **Custom Audit Deliverables:** Download **Multi-Tab Excel Workpaper (`.xlsx`)**, **Draft CARO Legal Report (`.md`)**, and official **PDF Report (`.pdf`)** branded with your company's name and audited figures.
 
 ---
 

@@ -75,32 +75,66 @@ st.markdown("""
         margin: 4px 0px;
         font-size: 0.9rem;
     }
-    .upload-card {
-        background-color: #F8FAFC;
+    .about-card {
+        background: linear-gradient(135deg, #F8FAFC 0%, #EEF2F6 100%);
         border: 1px solid #CBD5E1;
         border-radius: 8px;
-        padding: 18px 24px;
-        margin-bottom: 20px;
+        padding: 16px 22px;
+        margin-bottom: 16px;
+    }
+    .input-card {
+        background-color: #FFFFFF;
+        border: 1px solid #E2E8F0;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
 </style>
 """, unsafe_allow_html=True)
-
-# -------------------------------------------------------------
-# SIDEBAR CONTROLS
-# -------------------------------------------------------------
-st.sidebar.markdown("## 🏛️ Audit Engagement Setup")
 
 SAMPLE_DIR = ROOT_DIR / "data" / "sample_clients"
 TEMPLATES_DIR = ROOT_DIR / "data" / "templates"
 CUSTOM_RUNS_DIR = ROOT_DIR / "data" / "custom_runs"
 CUSTOM_RUNS_DIR.mkdir(parents=True, exist_ok=True)
 
+# -------------------------------------------------------------
+# SESSION STATE & ENGAGEMENT SETUP
+# -------------------------------------------------------------
+if "custom_session_id" not in st.session_state:
+    st.session_state.custom_session_id = uuid.uuid4().hex[:8]
+
+# -------------------------------------------------------------
+# SIDEBAR CONTROLS
+# -------------------------------------------------------------
+st.sidebar.markdown("## 🏛️ Audit Engagement Setup")
+
 engagement_mode = st.sidebar.radio(
-    "Select Engagement Mode",
-    ["🏢 Preloaded Listed Companies (Samples)", "📤 Upload Custom Company Data"],
+    "Engagement Data Source:",
+    ["🏢 Preloaded Listed Companies (Samples)", "✏️ Input Your Company Data & Run Custom Audit"],
     index=0
 )
 
+# -------------------------------------------------------------
+# TOP HEADER & ABOUT SECTION
+# -------------------------------------------------------------
+st.markdown("<div class='main-title'>CARO 2020 Statutory Audit Testing Engine</div>", unsafe_allow_html=True)
+
+with st.expander("ℹ️ About the Engine & How to Input Data", expanded=False):
+    st.markdown("""
+    **CARO 2020 Statutory Audit Engine** is an automated substantive audit testing platform built for statutory auditors under **Companies (Auditor's Report) Order, 2020** and Section 143(11) of the Companies Act, 2013.
+    
+    #### 🚀 How to Use & Get Output:
+    1. **Preloaded Real Cases:** Select *Tata Motors Limited* (real listed entity with clean/minor observations) or *Zenith Infra & Power Ltd* (stressed entity with defaults and qualifications).
+    2. **Audit Your Own Company:** Switch to **"✏️ Input Your Company Data & Run Custom Audit"** to:
+       - **Type your company details and key financial figures** directly on screen (Turnover, Borrowings default, Statutory arrears, Revaluations >10%, Cash losses).
+       - **Or upload client schedules** (`.csv` / `.zip`) using ICAI-compliant templates.
+    3. **Instant Regulatory Output:** View all 21 clauses evaluated in the **Compliance Matrix**, inspect substantive audit trails, and download **Audit Workpapers (.xlsx)**, **Draft CARO Reports (.md)**, and **PDF Deliverables (.pdf)**!
+    """)
+
+# -------------------------------------------------------------
+# MODE-SPECIFIC CONFIGURATION & EXECUTION
+# -------------------------------------------------------------
 if engagement_mode == "🏢 Preloaded Listed Companies (Samples)":
     client_options = {
         "Tata Motors Limited (FY 2023-24) - Real Listed Entity": SAMPLE_DIR / "tata_motors_fy24",
@@ -116,29 +150,13 @@ if engagement_mode == "🏢 Preloaded Listed Companies (Samples)":
     custom_ctt_pct = st.sidebar.slider("Clearly Trivial Threshold (% of OM)", 1, 10, 5, 1)
 
 else:
-    # Custom Company Upload Mode
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("### 🏢 Custom Company Details")
-    custom_co_name = st.sidebar.text_input("Company Name", value="Acme Industries Limited")
-    custom_cin = st.sidebar.text_input("Corporate Identity Number (CIN)", value="L17110MH2018PLC305891")
-    custom_fy = st.sidebar.text_input("Financial Year", value="2023-24")
-    custom_turnover = st.sidebar.number_input("Turnover / Revenue Benchmark (₹ Cr)", min_value=1.0, value=500.0, step=25.0)
-    custom_partner = st.sidebar.text_input("Lead Engagement Partner", value="CA Ananya Sharma, FCA")
-    custom_firm = st.sidebar.text_input("Audit Firm Name", value="Sharma & Associates LLP, Chartered Accountants")
-
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("### ⚙️ SA 320 Materiality Parameters")
-    custom_om_pct = st.sidebar.slider("Overall Materiality (% of Turnover)", 0.25, 2.0, 0.5, 0.05)
-    custom_pm_pct = st.sidebar.slider("Performance Materiality (% of OM)", 50, 85, 75, 5)
-    custom_ctt_pct = st.sidebar.slider("Clearly Trivial Threshold (% of OM)", 1, 10, 5, 1)
-
-    if "custom_session_id" not in st.session_state:
-        st.session_state.custom_session_id = uuid.uuid4().hex[:8]
-
+    # ---------------------------------------------------------
+    # CUSTOM COMPANY AUDIT MODE - ON-SCREEN INPUT & UPLOAD
+    # ---------------------------------------------------------
     client_path = CUSTOM_RUNS_DIR / f"session_{st.session_state.custom_session_id}"
     client_path.mkdir(parents=True, exist_ok=True)
 
-    # Initialize client folder with clean baseline files if empty
+    # Initialize client folder with clean baseline files if missing
     if TEMPLATES_DIR.exists():
         for tf in TEMPLATES_DIR.glob("*"):
             if tf.is_file() and not tf.name.endswith(".zip"):
@@ -146,85 +164,203 @@ else:
                 if not dest_file.exists():
                     shutil.copy(tf, dest_file)
 
-    # Update metadata.json with the user's custom details
-    meta_json_path = client_path / "metadata.json"
-    meta_data = {}
-    if meta_json_path.exists():
-        try:
-            with open(meta_json_path, "r", encoding="utf-8") as f:
-                meta_data = json.load(f)
-        except Exception:
-            meta_data = {}
-
-    meta_data["company_name"] = custom_co_name.strip() or "Acme Industries Limited"
-    meta_data["cin"] = custom_cin.strip() or "L17110MH2018PLC305891"
-    meta_data["financial_year"] = custom_fy.strip() or "2023-24"
-    meta_data["lead_partner"] = custom_partner.strip() or "CA Lead Partner"
-    meta_data["firm_name"] = custom_firm.strip() or "Chartered Accountants"
-    if "materiality" not in meta_data or not isinstance(meta_data["materiality"], dict):
-        meta_data["materiality"] = {}
-    meta_data["materiality"]["benchmark_name"] = "Turnover / Revenue from Operations"
-    meta_data["materiality"]["benchmark_amount"] = float(custom_turnover)
-    meta_data["materiality"]["overall_materiality_pct"] = float(custom_om_pct)
-    meta_data["materiality"]["performance_materiality_pct"] = float(custom_pm_pct)
-    meta_data["materiality"]["clearly_trivial_pct"] = float(custom_ctt_pct)
-
-    with open(meta_json_path, "w", encoding="utf-8") as f:
-        json.dump(meta_data, f, indent=2)
-
-# -------------------------------------------------------------
-# MAIN VIEW - HEADER & UPLOAD CARD (IF CUSTOM MODE)
-# -------------------------------------------------------------
-st.markdown("<div class='main-title'>CARO 2020 Statutory Audit Testing Engine</div>", unsafe_allow_html=True)
-
-if engagement_mode == "📤 Upload Custom Company Data":
     st.markdown("""
-    <div class='upload-card'>
-        <h3 style='margin-top: 0; color: #1B365D;'>📤 Upload Schedules for Custom Company Audit</h3>
-        <p style='color: #475569; font-size: 0.95rem; margin-bottom: 8px;'>
-            Run substantive audit procedures on any company. Upload your client's CSV schedules (Fixed Asset Register, Bank Statements, Statutory Dues, Borrowings, etc.) or a complete ZIP package.
-            <i>Any schedule not uploaded automatically uses compliant baseline values so all 21 clauses test without error.</i>
+    <div class='about-card'>
+        <h4 style='margin-top:0; color:#1B365D;'>✏️ Input Company Financial Data & Run Substantive Audit</h4>
+        <p style='color:#475569; font-size:0.95rem; margin-bottom:0;'>
+            Enter your company details and financial test indicators below, or upload custom client schedules.
+            The engine evaluates all 21 clauses per ICAI Guidance Note rules and computes quantified exposure.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
-    col_up1, col_up2 = st.columns([1, 2])
-    with col_up1:
-        st.markdown("##### 📥 Blank CSV & JSON Templates")
-        st.caption("Standard schedules formatted to ICAI Guidance Notes:")
-        template_zip = TEMPLATES_DIR / "caro_audit_blank_templates.zip"
-        if template_zip.exists():
-            with open(template_zip, "rb") as f:
-                st.download_button(
-                    label="⬇️ Download Blank Templates (.zip)",
-                    data=f.read(),
-                    file_name="caro_audit_blank_templates.zip",
-                    mime="application/zip",
-                    key="btn_download_templates",
-                    help="Contains 11 CSV schedule templates, sample JSONs, and instructions"
-                )
+    tab_input_form, tab_input_upload = st.tabs([
+        "📝 Method 1: Direct Form Input (Zero Setup)",
+        "📂 Method 2: Upload Client Schedules (.csv / .zip)"
+    ])
 
-    with col_up2:
-        st.markdown("##### 📂 Upload Client Schedules")
-        uploaded_files = st.file_uploader(
-            "Upload CSV / JSON schedules or a ZIP archive",
-            type=["csv", "json", "zip"],
-            accept_multiple_files=True,
-            help="Upload modified CSV schedules (e.g. fixed_asset_register.csv, quarterly_bank_returns.csv, statutory_dues_ledger.csv) or a single .zip file."
-        )
+    # Method 1: Direct Form Input
+    with tab_input_form:
+        c1, c2 = st.columns(2)
+        with c1:
+            custom_co_name = st.text_input("Company Name", value="Acme Industries Limited", key="inp_co_name")
+            custom_cin = st.text_input("Corporate Identity Number (CIN)", value="L17110MH2018PLC305891", key="inp_cin")
+            custom_fy = st.text_input("Financial Year", value="2023-24", key="inp_fy")
+        with c2:
+            custom_turnover = st.number_input("Turnover / Revenue Benchmark (₹ Cr)", min_value=1.0, value=500.0, step=25.0, key="inp_turnover")
+            custom_partner = st.text_input("Lead Engagement Partner", value="CA Ananya Sharma, FCA", key="inp_partner")
+            custom_firm = st.text_input("Audit Firm Name", value="Sharma & Associates LLP, Chartered Accountants", key="inp_firm")
 
-        if uploaded_files:
-            uploaded_names = []
-            for ufile in uploaded_files:
-                if ufile.name.endswith(".zip"):
-                    with zipfile.ZipFile(ufile) as z:
-                        z.extractall(client_path)
-                    uploaded_names.append(f"📦 {ufile.name} (extracted)")
-                else:
-                    dest_file = client_path / ufile.name
-                    dest_file.write_bytes(ufile.getbuffer())
-                    uploaded_names.append(f"📄 {ufile.name}")
-            st.success(f"Loaded {len(uploaded_names)} schedule(s): {', '.join(uploaded_names)}")
+        with st.expander("🔬 Specific Clause Financial Indicators (Optional Risk Overrides)", expanded=False):
+            st.caption("Toggle specific compliance triggers to test adverse findings or statutory qualifications:")
+            col_k1, col_k2 = st.columns(2)
+            with col_k1:
+                has_reval = st.checkbox("Clause 3(i)(d): Asset Revaluation > 10% during year", value=False)
+                reval_pct = st.number_input("Revaluation %", value=14.5, step=0.5) if has_reval else 0.0
+                reval_amt = st.number_input("Revaluation Amount (₹ Cr)", value=25.0, step=5.0) if has_reval else 0.0
+
+                has_bank_diff = st.checkbox("Clause 3(ii)(b): Discrepancy in Quarterly Bank Stock Returns", value=False)
+                bank_diff_amt = st.number_input("Bank vs Books Discrepancy (₹ Cr)", value=8.5, step=1.0) if has_bank_diff else 0.0
+
+                has_stat_arrears = st.checkbox("Clause 3(vii)(a): Undisputed Statutory Dues Overdue > 6 Months", value=False)
+                stat_name = st.selectbox("Statute Name", ["Central Goods and Services Tax Act 2017", "Income Tax Act 1961", "Employees Provident Funds Act 1952"]) if has_stat_arrears else ""
+                stat_amt = st.number_input("Overdue Tax Amount (₹ Cr)", value=3.4, step=0.5) if has_stat_arrears else 0.0
+
+            with col_k2:
+                has_default = st.checkbox("Clause 3(ix)(a): Default in Loan Repayment / Interest to Bank", value=False)
+                lender_name = st.text_input("Lender Name", value="Punjab National Bank") if has_default else ""
+                default_amt = st.number_input("Default Amount (₹ Cr)", value=18.0, step=2.0) if has_default else 0.0
+                days_delay = st.number_input("Days Delayed", value=95, step=15) if has_default else 0
+
+                has_cash_loss = st.checkbox("Clause 3(xvii): Cash Loss Incurred in FY", value=False)
+                cash_loss_amt = st.number_input("Cash Loss Amount (₹ Cr)", value=12.0, step=2.0) if has_cash_loss else 0.0
+
+                has_fraud = st.checkbox("Clause 3(xi): Fraud by or on the Company noticed/reported", value=False)
+
+        st.sidebar.markdown("---")
+        st.sidebar.markdown("### ⚙️ SA 320 Materiality Parameters")
+        custom_om_pct = st.sidebar.slider("Overall Materiality (% of Turnover)", 0.25, 2.0, 0.5, 0.05)
+        custom_pm_pct = st.sidebar.slider("Performance Materiality (% of OM)", 50, 85, 75, 5)
+        custom_ctt_pct = st.sidebar.slider("Clearly Trivial Threshold (% of OM)", 1, 10, 5, 1)
+
+        # Apply Form Inputs to Client Folder
+        meta_json_path = client_path / "metadata.json"
+        meta_data = {
+            "company_name": custom_co_name.strip() or "Acme Industries Limited",
+            "cin": custom_cin.strip() or "L17110MH2018PLC305891",
+            "financial_year": custom_fy.strip() or "2023-24",
+            "audit_period_start": "2023-04-01",
+            "audit_period_end": "2024-03-31",
+            "lead_partner": custom_partner.strip() or "CA Lead Partner",
+            "firm_name": custom_firm.strip() or "Chartered Accountants",
+            "nature_of_business": "Commercial Operations & Manufacturing",
+            "is_listed": True,
+            "reporting_currency": "INR",
+            "unit_scale": "Crores",
+            "standalone_or_consolidated": "Standalone",
+            "materiality": {
+                "benchmark_name": "Turnover / Revenue from Operations",
+                "benchmark_amount": float(custom_turnover),
+                "overall_materiality_pct": float(custom_om_pct),
+                "performance_materiality_pct": float(custom_pm_pct),
+                "clearly_trivial_pct": float(custom_ctt_pct)
+            }
+        }
+        with open(meta_json_path, "w", encoding="utf-8") as f:
+            json.dump(meta_data, f, indent=2)
+
+        # Update specific schedules if toggled
+        if has_reval and reval_pct > 0:
+            far_csv = client_path / "fixed_asset_register.csv"
+            if far_csv.exists():
+                df_f = pd.read_csv(far_csv)
+                df_f.loc[df_f["asset_class"] == "Plant & Machinery", "revaluation_pct_change"] = reval_pct
+                df_f.loc[df_f["asset_class"] == "Plant & Machinery", "revaluation_amount"] = reval_amt
+                df_f.loc[df_f["asset_class"] == "Plant & Machinery", "revalued_by_registered_valuer"] = "No"
+                df_f.to_csv(far_csv, index=False)
+
+        if has_bank_diff and bank_diff_amt > 0:
+            bank_csv = client_path / "quarterly_bank_returns.csv"
+            if bank_csv.exists():
+                df_b = pd.read_csv(bank_csv)
+                df_b.loc[df_b["quarter"].str.contains("Q2"), "amount_reported_to_bank_cr"] = 51.2 - bank_diff_amt
+                df_b.loc[df_b["quarter"].str.contains("Q2"), "difference_cr"] = bank_diff_amt
+                df_b.loc[df_b["quarter"].str.contains("Q2"), "variance_pct"] = (bank_diff_amt / 51.2) * 100.0
+                df_b.loc[df_b["quarter"].str.contains("Q2"), "reason_for_difference"] = "Discrepancy noted in quarterly stock return"
+                df_b.to_csv(bank_csv, index=False)
+
+        if has_stat_arrears and stat_amt > 0:
+            stat_csv = client_path / "statutory_dues_ledger.csv"
+            if stat_csv.exists():
+                df_s = pd.read_csv(stat_csv)
+                df_s = df_s[~df_s["statute_name"].str.contains("Custom Unpaid", na=False)]
+                new_stat = pd.DataFrame([{
+                    "statute_name": f"{stat_name} (Custom Unpaid)",
+                    "nature_of_dues": "Tax Arrears",
+                    "amount_cr": stat_amt,
+                    "period_to_which_relates": "FY 2022-23",
+                    "due_date": "2023-09-20",
+                    "payment_date": "",
+                    "status": "Unpaid",
+                    "days_overdue_as_of_mar31": 193,
+                    "exceeds_6_months": "Yes"
+                }])
+                df_s = pd.concat([df_s, new_stat], ignore_index=True)
+                df_s.to_csv(stat_csv, index=False)
+
+        if has_default and default_amt > 0:
+            borr_csv = client_path / "borrowings_default_schedule.csv"
+            df_borr = pd.DataFrame([{
+                "nature_of_borrowing": "Term Loan",
+                "name_of_lender": lender_name,
+                "sanctioned_amount_cr": default_amt * 2.0,
+                "outstanding_balance_mar31_cr": default_amt * 1.5,
+                "default_principal_cr": default_amt,
+                "default_interest_cr": default_amt * 0.1,
+                "days_delay": days_delay,
+                "remarks": "Default in debt servicing"
+            }])
+            df_borr.to_csv(borr_csv, index=False)
+
+        if has_cash_loss and cash_loss_amt > 0:
+            cf_json = client_path / "cash_flow_and_pnl.json"
+            if cf_json.exists():
+                with open(cf_json, "r", encoding="utf-8") as f:
+                    cf_d = json.load(f)
+                cf_d["current_year_fy24"]["recalculated_cash_profit_loss_cr"] = -cash_loss_amt
+                cf_d["current_year_fy24"]["has_cash_loss"] = True
+                with open(cf_json, "w", encoding="utf-8") as f:
+                    json.dump(cf_d, f, indent=2)
+
+        if has_fraud:
+            gov_json = client_path / "governance_check_responses.json"
+            if gov_json.exists():
+                with open(gov_json, "r", encoding="utf-8") as f:
+                    gov_d = json.load(f)
+                gov_d["clause_xi_fraud_reporting"]["fraud_by_company_noticed_or_reported"] = True
+                gov_d["clause_xi_fraud_reporting"]["form_adt4_filed_with_central_govt"] = True
+                with open(gov_json, "w", encoding="utf-8") as f:
+                    json.dump(gov_d, f, indent=2)
+
+    # Method 2: Upload Client Schedules
+    with tab_input_upload:
+        col_u1, col_u2 = st.columns([1, 2])
+        with col_u1:
+            st.markdown("##### 📥 Blank Templates")
+            st.caption("Standard schedules formatted to ICAI Guidance Notes:")
+            template_zip = TEMPLATES_DIR / "caro_audit_blank_templates.zip"
+            if template_zip.exists():
+                with open(template_zip, "rb") as f:
+                    st.download_button(
+                        label="⬇️ Download Blank Templates (.zip)",
+                        data=f.read(),
+                        file_name="caro_audit_blank_templates.zip",
+                        mime="application/zip",
+                        key="btn_download_templates_main",
+                        help="Contains CSV schedule templates, sample JSONs, and instructions"
+                    )
+
+        with col_u2:
+            st.markdown("##### 📂 Upload Schedules")
+            uploaded_files = st.file_uploader(
+                "Upload CSV / JSON schedules or a ZIP archive",
+                type=["csv", "json", "zip"],
+                accept_multiple_files=True,
+                help="Upload modified CSV schedules (e.g. fixed_asset_register.csv, quarterly_bank_returns.csv, statutory_dues_ledger.csv) or a single .zip file."
+            )
+
+            if uploaded_files:
+                uploaded_names = []
+                for ufile in uploaded_files:
+                    if ufile.name.endswith(".zip"):
+                        with zipfile.ZipFile(ufile) as z:
+                            z.extractall(client_path)
+                        uploaded_names.append(f"📦 {ufile.name} (extracted)")
+                    else:
+                        dest_file = client_path / ufile.name
+                        dest_file.write_bytes(ufile.getbuffer())
+                        uploaded_names.append(f"📄 {ufile.name}")
+                st.success(f"Loaded {len(uploaded_names)} uploaded file(s): {', '.join(uploaded_names)}")
 
 # -------------------------------------------------------------
 # AUDIT ENGINE EXECUTION
