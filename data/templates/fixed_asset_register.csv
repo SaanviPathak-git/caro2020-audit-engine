@@ -1,0 +1,6 @@
+asset_class,gross_block_beg,additions,disposals,revaluation_amount,gross_block_end,accum_depr,net_carrying_amount,physical_verified,revalued_by_registered_valuer,revaluation_pct_change
+Freehold Land,50.0,0.0,0.0,0.0,50.0,0.0,50.0,Yes,No,0.0
+Buildings,80.0,5.0,0.0,0.0,85.0,20.0,65.0,Yes,No,0.0
+Plant & Machinery,150.0,15.0,0.0,0.0,165.0,45.0,120.0,Yes,No,0.0
+Computers & IT,10.0,2.0,0.0,0.0,12.0,6.0,6.0,Yes,No,0.0
+Vehicles,5.0,0.5,0.0,0.0,5.5,2.0,3.5,Yes,No,0.0

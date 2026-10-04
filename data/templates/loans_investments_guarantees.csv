@@ -1,0 +1,2 @@
+party_name,relationship,type,amount_granted_during_year_cr,balance_outstanding_cr,terms_prejudicial,schedule_stipulated,repayment_regular,overdue_gt_90_days_cr,reasonable_steps_taken,renewed_or_extended_cr,repayable_on_demand_or_no_terms
+Acme Engineering Products Pvt Ltd,Subsidiary,Loan,15.0,12.0,No,Yes,Yes,0.0,Not Applicable,0.0,No

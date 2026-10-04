@@ -136,7 +136,7 @@ pytest tests/ -v
 
 ## 🌐 Deploy as a Live Web App (Streamlit Community Cloud)
 
-You can host this application online for free in **under 60 seconds** so anyone (recruiters, interviewers, audit partners) can open it on their browser or phone without downloading anything:
+You can host this application online for free in **under 60 seconds** so anyone (clients, audit engagement teams, reviewers, audit partners) can open it on their browser or phone without downloading anything:
 
 1. Go to **[share.streamlit.io](https://share.streamlit.io/)** and sign in with your GitHub account (`SaanviPathak-git`).
 2. Click **"New app"**.
@@ -144,7 +144,7 @@ You can host this application online for free in **under 60 seconds** so anyone 
 4. Set **Main file path** to: `app.py`.
 5. Click **"Deploy!"**.
 
-You will receive a live URL (e.g. `https://caro2020-audit-engine.streamlit.app`) that you can add to your resume, LinkedIn, or share directly in interviews!
+You will receive a live URL (e.g. `https://caro2020-audit-engine.streamlit.app`) that you can add to your resume, LinkedIn, or professional audit portfolio!
 
 ### 4. Run Test Suite
 Run the automated test suite with pytest:

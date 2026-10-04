@@ -57,6 +57,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# User uploads & custom runs
+data/custom_runs/
+
 # Private files
 INTERVIEW_PREPARATION_GUIDE.md
 *INTERVIEW*.md

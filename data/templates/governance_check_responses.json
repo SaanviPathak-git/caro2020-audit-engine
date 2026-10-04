@@ -1,0 +1,76 @@
+{
+  "clause_iv_sec185_186": {
+    "loans_to_directors_sec185_compliant": true,
+    "loans_guarantees_investments_sec186_compliant": true,
+    "special_resolution_passed_if_exceeding_limits": true,
+    "register_maintained_in_form_mbp2": true,
+    "remarks": "The Company has complied with the provisions of Sections 185 and 186 of the Act in respect of loans, investments, guarantees and security."
+  },
+  "clause_v_public_deposits": {
+    "has_accepted_public_deposits": false,
+    "directives_issued_by_rbi_complied": true,
+    "provisions_of_sections_73_to_76_complied": true,
+    "clb_or_nclt_orders_outstanding": false,
+    "remarks": "The Company has not accepted any deposits or deemed deposits within the meaning of Sections 73 to 76 of the Act and the rules made thereunder."
+  },
+  "clause_vi_cost_records": {
+    "cost_records_mandated_by_central_govt": true,
+    "specified_under_section_148_1": true,
+    "cost_accounts_and_records_maintained": true,
+    "substantive_audit_check": "We have broadly reviewed the books of account maintained by the Company pursuant to the rules made by the Central Government for the maintenance of cost records under Section 148(1) of the Act and are of the opinion that, prima facie, the prescribed accounts and records have been made and maintained."
+  },
+  "clause_viii_undisclosed_income": {
+    "unrecorded_transactions_surrendered_as_income": false,
+    "search_or_survey_under_income_tax_act": false,
+    "previously_unrecorded_income_recorded_in_books": false,
+    "remarks": "No transactions have been surrendered or disclosed as income during the year in the tax assessments under the Income Tax Act, 1961."
+  },
+  "clause_x_ipo_preferential_allotment": {
+    "moneys_raised_by_ipo_or_fpo": false,
+    "preferential_allotment_or_private_placement": false,
+    "section_42_and_62_complied": true,
+    "funds_used_for_intended_purposes": true,
+    "remarks": "The Company did not raise any money by way of initial public offer or further public offer or preferential allotment or private placement during the year."
+  },
+  "clause_xi_fraud_reporting": {
+    "fraud_by_company_noticed_or_reported": false,
+    "fraud_on_company_noticed_or_reported": false,
+    "form_adt4_filed_with_central_govt": false,
+    "whistleblower_complaints_received": 0,
+    "whistleblower_complaints_considered_by_auditor": true,
+    "substantive_audit_check": "No fraud by the Company or any fraud on the Company has been noticed or reported during the year. No report under Section 143(12) in Form ADT-4 has been filed."
+  },
+  "clause_xii_nidhi_company": {
+    "is_nidhi_company": false,
+    "remarks": "The Company is not a Nidhi company as per the provisions of the Companies Act, 2013. Accordingly, clause 3(xii) is not applicable."
+  },
+  "clause_xiv_internal_audit": {
+    "internal_audit_system_in_place": true,
+    "commensurate_with_size_and_nature": true,
+    "internal_audit_reports_reviewed_by_statutory_auditor": true,
+    "substantive_audit_check": "In our opinion, the Company has an internal audit system commensurate with the size and the nature of its business per SA 610."
+  },
+  "clause_xv_non_cash_transactions": {
+    "non_cash_transactions_with_directors": false,
+    "provisions_of_section_192_complied": true,
+    "remarks": "In our opinion, the Company has not entered into any non-cash transactions with its directors or persons connected with them within the meaning of Section 192."
+  },
+  "clause_xvi_rbi_nbfc_registration": {
+    "required_to_be_registered_under_45_ia": false,
+    "has_conducted_nbfc_activities": false,
+    "is_core_investment_company_cic": false,
+    "group_cic_count": 0,
+    "remarks": "The Company is not required to be registered under Section 45-IA of the Reserve Bank of India Act, 1934."
+  },
+  "clause_xviii_auditor_resignation": {
+    "resignation_of_statutory_auditor_during_year": false,
+    "form_adt3_inspected": false,
+    "issues_or_objections_raised": "None",
+    "remarks": "There has been no resignation of the statutory auditors during the year. Accordingly, clause 3(xviii) is not applicable."
+  },
+  "clause_xxi_cfs_qualifications": {
+    "is_consolidated_audit": false,
+    "subsidiary_caro_qualifications": [],
+    "remarks": "This standalone audit report does not include consolidated statements. Accordingly, clause 3(xxi) is not applicable for the standalone report."
+  }
+}

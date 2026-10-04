@@ -1,0 +1,5 @@
+quarter,bank_name,sanctioned_limit_cr,security_particulars,current_asset_type,amount_per_books_cr,amount_reported_to_bank_cr,difference_cr,variance_pct,reason_for_difference
+Q1 (June 2023),State Bank of India,40.0,Hypothecation of stocks and receivables,Stock & Book Debts,48.5,48.5,0.0,0.0,In exact agreement with books
+Q2 (Sept 2023),State Bank of India,40.0,Hypothecation of stocks and receivables,Stock & Book Debts,51.2,51.2,0.0,0.0,In exact agreement with books
+Q3 (Dec 2023),State Bank of India,40.0,Hypothecation of stocks and receivables,Stock & Book Debts,53.0,53.0,0.0,0.0,In exact agreement with books
+Q4 (Mar 2024),State Bank of India,40.0,Hypothecation of stocks and receivables,Stock & Book Debts,55.4,55.4,0.0,0.0,In exact agreement with books

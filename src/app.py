@@ -5,6 +5,11 @@ Built with Streamlit for Audit Engagement Teams at Big 4 & Top CA Firms.
 
 import sys
 import os
+import re
+import json
+import uuid
+import shutil
+import zipfile
 import html
 from pathlib import Path
 import pandas as pd
@@ -19,7 +24,7 @@ if str(SRC_DIR) not in sys.path:
 from caro_engine.core.engine import CaroAuditEngine
 from caro_engine.core.models import ClauseStatus
 from caro_engine.deliverables.excel_workpaper import generate_excel_workpaper
-from caro_engine.deliverables.draft_caro_report import generate_draft_caro_report_markdown, save_draft_caro_report
+from caro_engine.deliverables.draft_caro_report import save_draft_caro_report
 from caro_engine.deliverables.pdf_report import generate_caro_pdf_report
 from caro_engine.core.tickmarks import TICKMARK_LEGEND
 
@@ -30,14 +35,14 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom Styling (Safe, modern professional theme)
+# Custom Styling (Professional audit workstation theme)
 st.markdown("""
 <style>
     .main-title {
         font-size: 2.2rem;
         font-weight: 700;
         color: #1B365D;
-        margin-bottom: 4px;
+        margin-bottom: 2px;
     }
     .status-badge-clean {
         background-color: #DCFCE7;
@@ -70,6 +75,13 @@ st.markdown("""
         margin: 4px 0px;
         font-size: 0.9rem;
     }
+    .upload-card {
+        background-color: #F8FAFC;
+        border: 1px solid #CBD5E1;
+        border-radius: 8px;
+        padding: 18px 24px;
+        margin-bottom: 20px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -79,21 +91,144 @@ st.markdown("""
 st.sidebar.markdown("## 🏛️ Audit Engagement Setup")
 
 SAMPLE_DIR = ROOT_DIR / "data" / "sample_clients"
-client_options = {
-    "Tata Motors Limited (FY 2023-24) - Real Listed Entity": SAMPLE_DIR / "tata_motors_fy24",
-    "Zenith Infra & Power Ltd (FY 2023-24) - Stressed / Qualifications": SAMPLE_DIR / "zenith_infra_fy24"
-}
+TEMPLATES_DIR = ROOT_DIR / "data" / "templates"
+CUSTOM_RUNS_DIR = ROOT_DIR / "data" / "custom_runs"
+CUSTOM_RUNS_DIR.mkdir(parents=True, exist_ok=True)
 
-selected_client_label = st.sidebar.selectbox("Select Audit Client", list(client_options.keys()))
-client_path = client_options[selected_client_label]
+engagement_mode = st.sidebar.radio(
+    "Select Engagement Mode",
+    ["🏢 Preloaded Listed Companies (Samples)", "📤 Upload Custom Company Data"],
+    index=0
+)
 
-st.sidebar.markdown("---")
-st.sidebar.markdown("### ⚙️ SA 320 Materiality Parameters")
-custom_om_pct = st.sidebar.slider("Overall Materiality (% of Turnover)", 0.25, 2.0, 0.5, 0.05)
-custom_pm_pct = st.sidebar.slider("Performance Materiality (% of OM)", 50, 85, 75, 5)
-custom_ctt_pct = st.sidebar.slider("Clearly Trivial Threshold (% of OM)", 1, 10, 5, 1)
+if engagement_mode == "🏢 Preloaded Listed Companies (Samples)":
+    client_options = {
+        "Tata Motors Limited (FY 2023-24) - Real Listed Entity": SAMPLE_DIR / "tata_motors_fy24",
+        "Zenith Infra & Power Ltd (FY 2023-24) - Stressed / Qualifications": SAMPLE_DIR / "zenith_infra_fy24"
+    }
+    selected_client_label = st.sidebar.selectbox("Select Audit Client", list(client_options.keys()))
+    client_path = client_options[selected_client_label]
 
-# Execute Audit Engine directly (Fast execution < 100ms, avoids caching serialization issues)
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### ⚙️ SA 320 Materiality Parameters")
+    custom_om_pct = st.sidebar.slider("Overall Materiality (% of Turnover)", 0.25, 2.0, 0.5, 0.05)
+    custom_pm_pct = st.sidebar.slider("Performance Materiality (% of OM)", 50, 85, 75, 5)
+    custom_ctt_pct = st.sidebar.slider("Clearly Trivial Threshold (% of OM)", 1, 10, 5, 1)
+
+else:
+    # Custom Company Upload Mode
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### 🏢 Custom Company Details")
+    custom_co_name = st.sidebar.text_input("Company Name", value="Acme Industries Limited")
+    custom_cin = st.sidebar.text_input("Corporate Identity Number (CIN)", value="L17110MH2018PLC305891")
+    custom_fy = st.sidebar.text_input("Financial Year", value="2023-24")
+    custom_turnover = st.sidebar.number_input("Turnover / Revenue Benchmark (₹ Cr)", min_value=1.0, value=500.0, step=25.0)
+    custom_partner = st.sidebar.text_input("Lead Engagement Partner", value="CA Ananya Sharma, FCA")
+    custom_firm = st.sidebar.text_input("Audit Firm Name", value="Sharma & Associates LLP, Chartered Accountants")
+
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### ⚙️ SA 320 Materiality Parameters")
+    custom_om_pct = st.sidebar.slider("Overall Materiality (% of Turnover)", 0.25, 2.0, 0.5, 0.05)
+    custom_pm_pct = st.sidebar.slider("Performance Materiality (% of OM)", 50, 85, 75, 5)
+    custom_ctt_pct = st.sidebar.slider("Clearly Trivial Threshold (% of OM)", 1, 10, 5, 1)
+
+    if "custom_session_id" not in st.session_state:
+        st.session_state.custom_session_id = uuid.uuid4().hex[:8]
+
+    client_path = CUSTOM_RUNS_DIR / f"session_{st.session_state.custom_session_id}"
+    client_path.mkdir(parents=True, exist_ok=True)
+
+    # Initialize client folder with clean baseline files if empty
+    if TEMPLATES_DIR.exists():
+        for tf in TEMPLATES_DIR.glob("*"):
+            if tf.is_file() and not tf.name.endswith(".zip"):
+                dest_file = client_path / tf.name
+                if not dest_file.exists():
+                    shutil.copy(tf, dest_file)
+
+    # Update metadata.json with the user's custom details
+    meta_json_path = client_path / "metadata.json"
+    meta_data = {}
+    if meta_json_path.exists():
+        try:
+            with open(meta_json_path, "r", encoding="utf-8") as f:
+                meta_data = json.load(f)
+        except Exception:
+            meta_data = {}
+
+    meta_data["company_name"] = custom_co_name.strip() or "Acme Industries Limited"
+    meta_data["cin"] = custom_cin.strip() or "L17110MH2018PLC305891"
+    meta_data["financial_year"] = custom_fy.strip() or "2023-24"
+    meta_data["lead_partner"] = custom_partner.strip() or "CA Lead Partner"
+    meta_data["firm_name"] = custom_firm.strip() or "Chartered Accountants"
+    if "materiality" not in meta_data or not isinstance(meta_data["materiality"], dict):
+        meta_data["materiality"] = {}
+    meta_data["materiality"]["benchmark_name"] = "Turnover / Revenue from Operations"
+    meta_data["materiality"]["benchmark_amount"] = float(custom_turnover)
+    meta_data["materiality"]["overall_materiality_pct"] = float(custom_om_pct)
+    meta_data["materiality"]["performance_materiality_pct"] = float(custom_pm_pct)
+    meta_data["materiality"]["clearly_trivial_pct"] = float(custom_ctt_pct)
+
+    with open(meta_json_path, "w", encoding="utf-8") as f:
+        json.dump(meta_data, f, indent=2)
+
+# -------------------------------------------------------------
+# MAIN VIEW - HEADER & UPLOAD CARD (IF CUSTOM MODE)
+# -------------------------------------------------------------
+st.markdown("<div class='main-title'>CARO 2020 Statutory Audit Testing Engine</div>", unsafe_allow_html=True)
+
+if engagement_mode == "📤 Upload Custom Company Data":
+    st.markdown("""
+    <div class='upload-card'>
+        <h3 style='margin-top: 0; color: #1B365D;'>📤 Upload Schedules for Custom Company Audit</h3>
+        <p style='color: #475569; font-size: 0.95rem; margin-bottom: 8px;'>
+            Run substantive audit procedures on any company. Upload your client's CSV schedules (Fixed Asset Register, Bank Statements, Statutory Dues, Borrowings, etc.) or a complete ZIP package.
+            <i>Any schedule not uploaded automatically uses compliant baseline values so all 21 clauses test without error.</i>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col_up1, col_up2 = st.columns([1, 2])
+    with col_up1:
+        st.markdown("##### 📥 Blank CSV & JSON Templates")
+        st.caption("Standard schedules formatted to ICAI Guidance Notes:")
+        template_zip = TEMPLATES_DIR / "caro_audit_blank_templates.zip"
+        if template_zip.exists():
+            with open(template_zip, "rb") as f:
+                st.download_button(
+                    label="⬇️ Download Blank Templates (.zip)",
+                    data=f.read(),
+                    file_name="caro_audit_blank_templates.zip",
+                    mime="application/zip",
+                    key="btn_download_templates",
+                    help="Contains 11 CSV schedule templates, sample JSONs, and instructions"
+                )
+
+    with col_up2:
+        st.markdown("##### 📂 Upload Client Schedules")
+        uploaded_files = st.file_uploader(
+            "Upload CSV / JSON schedules or a ZIP archive",
+            type=["csv", "json", "zip"],
+            accept_multiple_files=True,
+            help="Upload modified CSV schedules (e.g. fixed_asset_register.csv, quarterly_bank_returns.csv, statutory_dues_ledger.csv) or a single .zip file."
+        )
+
+        if uploaded_files:
+            uploaded_names = []
+            for ufile in uploaded_files:
+                if ufile.name.endswith(".zip"):
+                    with zipfile.ZipFile(ufile) as z:
+                        z.extractall(client_path)
+                    uploaded_names.append(f"📦 {ufile.name} (extracted)")
+                else:
+                    dest_file = client_path / ufile.name
+                    dest_file.write_bytes(ufile.getbuffer())
+                    uploaded_names.append(f"📄 {ufile.name}")
+            st.success(f"Loaded {len(uploaded_names)} schedule(s): {', '.join(uploaded_names)}")
+
+# -------------------------------------------------------------
+# AUDIT ENGINE EXECUTION
+# -------------------------------------------------------------
 engine = CaroAuditEngine(client_path)
 raw_data = engine.load_data()
 if raw_data["metadata"].materiality:
@@ -106,10 +241,6 @@ summary = engine.run_audit()
 meta = summary.metadata
 mat = meta.materiality
 
-# -------------------------------------------------------------
-# HEADER & MATERIALITY BANNER
-# -------------------------------------------------------------
-st.markdown("<div class='main-title'>CARO 2020 Statutory Audit Testing Engine</div>", unsafe_allow_html=True)
 safe_co_name = html.escape(meta.company_name)
 st.caption(f"Automated Substantive Audit Testing across all 21 Clauses | Client: **{safe_co_name}** (CIN: {meta.cin}) | FY: **{meta.financial_year}**")
 
@@ -129,13 +260,12 @@ with col5:
 st.markdown("---")
 
 # -------------------------------------------------------------
-# NAVIGATION TABS
+# NAVIGATION TABS (Executive Matrix, Inspector & Deliverables)
 # -------------------------------------------------------------
-tab_matrix, tab_inspector, tab_deliverables, tab_interview = st.tabs([
+tab_matrix, tab_inspector, tab_deliverables = st.tabs([
     "📊 CARO Clause Matrix (21 Clauses)",
     "🔍 Clause Deep-Dive & Substantive Tests",
-    "📥 Regulatory Deliverables (Excel / Report / PDF)",
-    "🎓 Statutory Audit Interview Masterclass"
+    "📥 Regulatory Deliverables (Excel / Report / PDF)"
 ])
 
 # -------------------------------------------------------------
@@ -266,12 +396,12 @@ with tab_deliverables:
     deliv_dir = client_path / "deliverables"
     deliv_dir.mkdir(parents=True, exist_ok=True)
     
-    clean_name = meta.company_name.replace(' ', '_').replace('&', 'and')
+    clean_name = re.sub(r'[^\w\-_]', '_', meta.company_name)
     excel_file = deliv_dir / f"{clean_name}_CARO_2020_Workpaper.xlsx"
     md_file = deliv_dir / f"{clean_name}_Draft_CARO_Report.md"
     pdf_file = deliv_dir / f"{clean_name}_CARO_2020_Report.pdf"
 
-    # Safely generate deliverables if not already present
+    # Safely generate deliverables
     try:
         generate_excel_workpaper(excel_file, meta, summary.clause_results)
         save_draft_caro_report(md_file, meta, summary.clause_results)
@@ -321,70 +451,7 @@ with tab_deliverables:
                 )
 
     st.markdown("---")
-    st.markdown("#### 👁️ Report Preview:")
+    st.markdown("#### 👁️ Draft Report Preview:")
     if md_file.exists():
         with open(md_file, "r", encoding="utf-8") as f:
             st.code(f.read(), language="markdown")
-
-# -------------------------------------------------------------
-# TAB 4: INTERVIEW MASTERCLASS
-# -------------------------------------------------------------
-with tab_interview:
-    st.markdown("### 🎓 Big 4 Statutory Audit Interview Masterclass: CARO 2020")
-    st.write(
-        "Everything you need to master statutory audit, CARO 2020, NFRA regulatory inspections, "
-        "and technical interview rounds at PwC, Deloitte, EY, KPMG, BDO, and Grant Thornton."
-    )
-    
-    qa_items = [
-        {
-            "q": "1. What is CARO 2020, which section governs it, and who is exempt?",
-            "a": """**Statutory Provision:** Section 143(11) of the Companies Act, 2013. Notified by the MCA on February 25, 2020. Applicable from FY 2021-22 onwards.
-**Applicability:** Applies to every company including foreign companies, EXCEPT:
-1. Banking companies (Banking Regulation Act, 1949)
-2. Insurance companies (Insurance Act, 1938)
-3. Section 8 companies (non-profit entities)
-4. One Person Companies (OPCs) and Small Companies (Section 2(85))
-5. Private limited companies that meet ALL three criteria:
-   - Paid up share capital + Reserves & Surplus <= ₹1 Crore
-   - Total borrowings from banks/FIs <= ₹1 Crore at ANY point during the FY
-   - Total revenue (including other income) <= ₹10 Crore."""
-        },
-        {
-            "q": "2. Explain Clause (ii)(b): Working capital bank statements vs books reconciliation.",
-            "a": """**Statutory Threshold:** Sanctioned working capital limits exceeding **₹5 Crore** in aggregate from banks or FIs on the basis of security of current assets.
-**Testing Procedure:**
-1. Obtain sanction letters and compute aggregate limits.
-2. Obtain quarterly statements/returns (stock statements, book debt statements, QIS returns) submitted to banks.
-3. Compare line items against the internal books of account / trial balance as of that quarter-end.
-4. Calculate differences and reasons (e.g. inventory valuation standard cost vs actual FIFO, goods-in-transit timing, ECL provisions).
-5. **Mandatory ICAI Disclosure Table:** Quarter, Bank Name, Securities provided, Amount per books, Amount per bank return, Difference, Reason."""
-        },
-        {
-            "q": "3. How is Cash Loss recalculated under Clause (xvii)?",
-            "a": """**Statutory Rule:** Whether the company incurred cash losses in the financial year and immediately preceding financial year.
-**Recalculation Formula (ICAI Guidance Note Para 17):**
-`Cash Profit / (Loss) = Operating / Net Profit (Loss) Before Tax + Depreciation + Amortization + Asset Impairment + Non-cash FX - Unrealized Gains`
-If the adjusted figure is negative, a Cash Loss exists and MUST be disclosed for current and preceding FY!"""
-        },
-        {
-            "q": "4. What does NFRA check during audit inspections regarding SA 230 and CARO?",
-            "a": """**NFRA Inspection Focus Areas:**
-1. **SA 230 (Audit Documentation):** Can an experienced auditor having no previous connection with the audit understand the nature, timing, extent of procedures, evidence obtained, and conclusions reached?
-2. **Mathematical Proofs:** Did the audit team independently verify mathematical casts, revaluations > 10%, aging of tax dues, and bank reconciliations, or merely accept management checklists?
-3. **Tickmarks & Audit Trail:** Are workpapers annotated with standardized tickmarks tied to underlying vouchers?"""
-        },
-        {
-            "q": "5. What are the key checks under Clause (xix) regarding Going Concern?",
-            "a": """**Statutory Requirement:** Auditor's opinion whether material uncertainty exists regarding capability to meet liabilities existing at balance sheet date falling due within 1 year.
-**Auditor's Evidence Base:**
-1. **10 Schedule III Financial Ratios:** Current Ratio, Debt-Equity, DSCR, ROE, Inventory Turnover, Debtors Turnover, Payables Turnover, Working Capital Turnover, Net Profit Margin, ROCE.
-2. **1-Year Asset-Liability Maturity Gap:** Liquid financial assets realizable within 12 months vs maturing liabilities.
-3. **Undrawn Credit Lines:** Available headroom under sanctioned consortium facilities.
-4. **Management Plans:** Forecasted operating cash flows evaluated per SA 570."""
-        }
-    ]
-    
-    for item in qa_items:
-        with st.expander(f"💡 {item['q']}"):
-            st.markdown(item["a"])

@@ -1,0 +1,4 @@
+plant_location,inventory_class,book_value_cr,physical_count_value_cr,variance_amount_cr,variance_pct,exceeds_10pct_statutory_threshold,properly_adjusted_in_books,frequency_of_count
+Main Plant,Raw Materials,25.0,24.8,-0.2,-0.8,No,Yes,Continuous cycle count during the year
+Main Plant,Finished Goods,18.0,18.1,0.1,0.55,No,Yes,Quarterly physical verification
+Warehouse North,Components & Spares,8.0,7.95,-0.05,-0.62,No,Yes,Annual physical count at year-end
