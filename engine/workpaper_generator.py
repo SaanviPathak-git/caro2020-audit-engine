@@ -121,7 +121,7 @@ def create_audit_workpaper(result: AuditEngagementResult, output_path: str):
     r_idx += 1
 
     sign_rows = [
-        ("Audit Senior / In-charge", "CA Ananya Deshmukh", "Senior Auditor", "2024-05-04", "All 21 clause test schedules extracted, tick marks applied, variance checks executed."),
+        ("Audit Senior / In-charge", "CA Saanvi Pathak", "Senior Auditor", "2024-05-04", "All 21 clause test schedules extracted, tick marks applied, variance checks executed."),
         ("Audit Manager", "CA Rahul Kapoor", "Audit Manager", "2024-05-06", "Substantive testing reviewed; verified 10% revaluation, bank returns reconciliation, and disputed tax table."),
         ("Engagement Quality Reviewer (EQCR)", "CA Meera Singhania", "Senior Partner", "2024-05-07", "Independent partner review performed under SA 220; CARO annexures evaluated for regulatory inspection."),
         ("Engagement Partner", result.metadata.engagement_partner, "Lead Engagement Partner", "2024-05-08", "Approved for issuance as Annexure to Independent Auditor's Report.")

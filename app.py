@@ -152,8 +152,8 @@ else:
     st.info("✏️ **Custom Company Audit Mode:** Enter your company details and financial test indicators below, or upload schedules. All 21 clauses are evaluated in real-time.")
 
     tab_input_form, tab_input_upload = st.tabs([
-        "📋 Form Input (Zero Setup)",
-        "📁 Upload Schedules (.csv / .zip)"
+        "Form Input (Zero Setup)",
+        "Upload Schedules (.csv / .zip)"
     ])
 
     # Method 1: Direct Form Input
@@ -165,8 +165,8 @@ else:
             custom_fy = st.text_input("Financial Year", value="2023-24", key="inp_fy")
         with c2:
             custom_turnover = st.number_input("Turnover / Revenue Benchmark (₹ Cr)", min_value=1.0, value=500.0, step=25.0, key="inp_turnover")
-            custom_partner = st.text_input("Lead Engagement Partner", value="CA Ananya Sharma, FCA", key="inp_partner")
-            custom_firm = st.text_input("Audit Firm Name", value="Sharma & Associates LLP, Chartered Accountants", key="inp_firm")
+            custom_partner = st.text_input("Lead Engagement Partner", value="CA Saanvi Pathak, FCA", key="inp_partner")
+            custom_firm = st.text_input("Audit Firm Name", value="Pathak & Associates LLP, Chartered Accountants", key="inp_firm")
 
         with st.expander("🔬 Specific Clause Financial Indicators (Optional Risk Overrides)", expanded=False):
             st.caption("Toggle specific compliance triggers to test adverse findings or statutory qualifications:")
