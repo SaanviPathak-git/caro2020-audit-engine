@@ -181,15 +181,17 @@ The engine automatically generates three audit deliverables in the client's `del
 
 ---
 
-| Tickmark | Meaning per ICAI SA 230 / SA 500 |
+## 🏷️ Big 4 Standard Audit Tickmark Codes (SA 230)
+
+| Tickmark | Meaning per ICAI SA 230 / SA 500 & Big 4 Electronic Workpapers |
 | :---: | :--- |
-| **`✓`** | **Vouched:** Verified against primary documentary evidence (invoices, deeds, agreements). |
-| **`Σ`** | **Cast Verified:** Mathematically cast and cross-cast recalculated by software without exception. |
-| **`Φ`** | **External Reconciled:** Reconciled with independent 3rd party confirmation or bank returns per SA 505. |
-| **`λ`** | **Statutory Limit:** Substantively tested against legal thresholds prescribed under Companies Act / CARO 2020. |
-| **`GL`** | **Ledger Tied:** Tied directly to audited Trial Balance / General Ledger closing balances as of March 31. |
-| **`X`** | **Exception Flagged:** Audit discrepancy detected exceeding tolerable statutory threshold. |
-| **`Δ`** | **Document Inspected:** Inspected minutes, board approvals, or external legal documentation per SA 250. |
+| **`[V]`** | **Vouched:** Verified against primary documentary source evidence (invoices, deeds, agreements) per SA 500. |
+| **`[C]`** | **Cast Verified:** Mathematically cast and cross-cast recalculated without exception. |
+| **`[CONF]`** | **External Reconciled:** Reconciled with independent third-party confirmation or quarterly bank returns per SA 505. |
+| **`[STAT]`** | **Statutory Limit:** Substantively tested against legal thresholds prescribed under Companies Act, 2013 / CARO 2020. |
+| **`[TB]`** | **Ledger Tied:** Tied directly to audited Trial Balance / General Ledger closing balances as of March 31. |
+| **`[DOC]`** | **Document Inspected:** Inspected minutes, board approvals, or external regulatory filings per SA 250. |
+| **`[EX]`** | **Exception Flagged:** Audit exception identified exceeding tolerable statutory threshold, requiring CARO disclosure. |
 
 ---
 
